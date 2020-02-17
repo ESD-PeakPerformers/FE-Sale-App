@@ -1,0 +1,23 @@
+@import './base/reset.scss';
+
+//Utils
+@import './utils/variables';
+@import './utils/functions';
+@import './utils/mixins';
+
+//Base
+@import './base/typography.scss';
+
+//Vendor
+@import './vendors/ionic.scss';
+
+//Layout
+@import './layout/Layout.scss';
+
+//Components
+@import './components/Spinner/Spinner.scss';
+
+//Pages
+
+
+//Themes

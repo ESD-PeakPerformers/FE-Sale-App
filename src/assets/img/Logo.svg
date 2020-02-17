@@ -1,0 +1,9 @@
+<svg id="Logo" xmlns="http://www.w3.org/2000/svg" width="60" height="57" viewBox="0 0 60 57">
+  <rect id="Rectangle_1" data-name="Rectangle 1" width="60" height="57" rx="15" fill="#ededed"/>
+  <text id="i" transform="translate(22.332 23.394) rotate(21)" fill="#323232" font-size="24" font-family="Rockwell-Bold, Rockwell" font-weight="700"><tspan x="0" y="0">i</tspan></text>
+  <text id="d" transform="translate(9.496 38.094) rotate(-10)" fill="#323232" font-size="24" font-family="Rockwell-Bold, Rockwell" font-weight="700"><tspan x="0" y="0">d</tspan></text>
+  <text id="k" transform="translate(32.47 48.852) rotate(-22)" fill="#323232" font-size="24" font-family="Rockwell-Bold, Rockwell" font-weight="700"><tspan x="0" y="0">k</tspan></text>
+  <circle id="Ellipse_3" data-name="Ellipse 3" cx="5.5" cy="5.5" r="5.5" transform="translate(37 15)" fill="#0182ff"/>
+  <circle id="Ellipse_1" data-name="Ellipse 1" cx="1.5" cy="1.5" r="1.5" transform="translate(39 17)" fill="#e0e0e0"/>
+  <circle id="Ellipse_4" data-name="Ellipse 4" cx="1.5" cy="1.5" r="1.5" transform="translate(43 17)" fill="#e0e0e0"/>
+</svg>
