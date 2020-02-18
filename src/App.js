@@ -17,6 +17,8 @@ import Profile from './pages/Profile/Profile';
 import Message from './pages/Message/Message';
 import Notification from './pages/Notification/Notification';
 import Landing from './pages/Landing'
+import Auth from './pages/Auth/Auth'
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -36,6 +38,9 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* SASS */
+import './style/main.scss';
+
 const App = () => (
   <IonApp>
     <IonReactRouter>
@@ -46,6 +51,7 @@ const App = () => (
           <Route path="/message" component={Message} exact={true}/>
           <Route path="/notification" component={Notification} exact={true}/>
           <Route path="/profile" component={Profile} exact={true}/>
+          <Route path="/auth" component={Auth} exact={true}/>
           <Route path="/" component={Landing} exact={true}/>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">

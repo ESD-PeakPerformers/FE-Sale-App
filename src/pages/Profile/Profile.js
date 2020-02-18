@@ -1,21 +1,34 @@
 import React from 'react';
-import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react';
+import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonText, IonAvatar, IonItem, IonLabel, IonButton, IonIcon,IonButtons} from '@ionic/react';
+import Avatar from '../../assets/img/Avatar@2x.png'
+import {cartOutline} from 'ionicons/icons'
+import {Link} from 'react-router-dom'
 
 const Profile = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Profile</IonTitle>
+          <IonTitle slot='start'>Cá nhân</IonTitle>
+          <IonButtons slot="end">
+            <IonButton href="/cart">
+             <IonIcon icon={cartOutline}/>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Profile</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
+        <Link to="/auth">
+          <IonItem>
+            <IonAvatar slot="start">
+              <img src={Avatar}/>
+            </IonAvatar>
+            <IonLabel>
+              <h3>Chào mừng bạn đến với DIK.</h3>
+              <p>Đăng nhập / Đăng ký </p>
+            </IonLabel>
+          </IonItem>
+        </Link>
       </IonContent>
     </IonPage>
   );
