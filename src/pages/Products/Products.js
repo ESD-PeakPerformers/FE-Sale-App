@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   IonContent,
   IonHeader,
@@ -6,17 +6,45 @@ import {
   IonTitle,
   IonToolbar,
   IonAvatar,
-  IonButtons,
-  IonButton,
   IonGrid,
   IonSearchbar,
+  IonLoading,
+  IonSpinner
 
 } from '@ionic/react';
 import Avatar from '../../assets/img/Avatar@2x.png'
 import Slide from './Slide/Slide'
 import Section from './Section/Section'
-import sampleData from './SampleData';
+import axios from 'axios';
+import LazyLoad from 'react-lazyload'
+
 const Products = () => {
+  console.log(process.env.REACT_APP_BASE_URL)
+  const [data,
+    setData] = useState()
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_BASE_URL + 'products')
+      .then(({data}) => {
+        setData(data)
+      })
+      .catch(err => console.log(err))
+  }, [])
+  const renderSection = data && data.map(cat => {
+    return (
+      <LazyLoad
+        once={true}
+        height={50}
+        overflow
+        throttle={300}
+        placeholder={<IonSpinner/>}>
+        <Section
+          title={cat.cateName}
+          link={"products/" + cat.cateName}
+          products={cat.products}/>
+      </LazyLoad>
+    )
+  })
 
   return (
     <IonPage>
@@ -34,9 +62,7 @@ const Products = () => {
       <IonContent>
         <IonGrid>
           <IonSearchbar debounce={500} placeholder="Tìm kiếm sản phẩm..."></IonSearchbar>
-          <Slide/>
-          <Section title={"Sản phẩm bán chạy"} products={sampleData.products} link={sampleData.link}/>
-          <Section title={"Sản phầm khuyến mãi"} products={sampleData.products} link={sampleData.link}/>
+          <Slide/> {renderSection}
         </IonGrid>
       </IonContent>
     </IonPage>

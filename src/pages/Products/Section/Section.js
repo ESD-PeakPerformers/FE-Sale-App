@@ -15,87 +15,50 @@ import {
 const Section = ({title, link, products}) => {
   const slideOpts = {
     initialSlide: 1,
-    speed: 400
+    speed: 400,
+    loop: true
   };
+  const renderSlides = () => {
+    for (let i = 0; i <= products.length; i += 3) {
+      return (
+        <IonSlide>
+          <IonItemGroup style={{width: '100%'}}>
+            {products
+              .slice(i, i + 3)
+              .map(item => {
+                return (
+                  <IonItem href={"/products/" + title + "/" + item.prodCode}>
+                    <IonLabel>
+                      <h4>{item.prodName}</h4>
+                      <p>{item.prodCode}</p>
+                    </IonLabel>
+                    <IonThumbnail slot="start">
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="/>
+                    </IonThumbnail>
+                    <IonButton fill="outline" color='medium' slot="end">{item.price}</IonButton>
+                  </IonItem>
+                )
+              })}
+          </IonItemGroup>
+        </IonSlide>
+      )
+    }
+  }
+
   return (
     <React.Fragment>
 
       <IonToolbar>
         <IonTitle slot='start'>{title}</IonTitle>
         <IonButtons slot='end'>
-          <IonButton color="light" href={link}>
-            <IonLabel>
-              Xem thêm
-            </IonLabel>
+          <IonButton color="primary" href={link}>
+            <IonLabel>Xem tất cả</IonLabel>
           </IonButton>
         </IonButtons>
       </IonToolbar>
-
       <IonSlides options={slideOpts}>
-        <IonSlide>
-          <IonItemGroup>
-            <IonItem href="#">
-              <IonLabel>
-                Thumbnail End, Anchor Item
-              </IonLabel>
-              <IonThumbnail slot="end">
-                <img
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="/>
-              </IonThumbnail>
-            </IonItem>
-            <IonItem href="#">
-              <IonLabel>
-                Thumbnail End, Anchor Item
-              </IonLabel>
-              <IonThumbnail slot="end">
-                <img
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="/>
-              </IonThumbnail>
-            </IonItem>
-            <IonItem href="#">
-              <IonLabel>
-                Thumbnail End, Anchor Item
-              </IonLabel>
-              <IonThumbnail slot="end">
-                <img
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="/>
-              </IonThumbnail>
-            </IonItem>
-          </IonItemGroup>
-
-        </IonSlide>
-        <IonSlide>
-          <IonItemGroup>
-            <IonItem href="#">
-              <IonLabel>
-                Thumbnail End, Anchor Item
-              </IonLabel>
-              <IonThumbnail slot="end">
-                <img
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="/>
-              </IonThumbnail>
-            </IonItem>
-            <IonItem href="#">
-              <IonLabel>
-                Thumbnail End, Anchor Item
-              </IonLabel>
-              <IonThumbnail slot="end">
-                <img
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="/>
-              </IonThumbnail>
-            </IonItem>
-            <IonItem href="#">
-              <IonLabel>
-                Thumbnail End, Anchor Item
-              </IonLabel>
-              <IonThumbnail slot="end">
-                <img
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="/>
-              </IonThumbnail>
-            </IonItem>
-          </IonItemGroup>
-
-        </IonSlide>
+        {renderSlides()}
       </IonSlides>
     </React.Fragment>
   )

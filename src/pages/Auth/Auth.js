@@ -17,11 +17,12 @@ import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
 const Auth = ({history}) => {
-  const [isLogin,
-    setIsLogin] = useState(true)
+  const [segment,
+    setSegment] = useState("login")
   const [loginInput,
     setLoginInput] = useState()
   const [regisInput, setRegisInput] = useState()
+
   const submitChangeHandler = (e) => {
     const {name, value} = e.target
     setLoginInput(prev => ({
@@ -36,10 +37,14 @@ const Auth = ({history}) => {
       [name]: value
     }))
   }
+  const segmentChange = (e) => {
+    setSegment(e.target.value);
+    console.log(e.target.value)
+  }
 
   const submitHandler = (e) => {
     e.preventDefault()
-    if(isLogin){
+    if(segment === "login"){
       axios
         .post(process.env.REACT_APP_BASE_URL + 'users/login', {
         ...loginInput
@@ -61,7 +66,7 @@ const Auth = ({history}) => {
   }
 
   const renderSegment = () => {
-    if (isLogin) {
+    if (segment === "login") {
       return (
         <IonItemGroup>
           <form onSubmit={submitHandler}>
@@ -130,11 +135,11 @@ const Auth = ({history}) => {
       </IonHeader>
       <IonContent>
 
-        <IonSegment>
-          <IonSegmentButton value="login" onClick={() => setIsLogin(true)}>
+        <IonSegment scrollable onIonChange={segmentChange}>
+          <IonSegmentButton value="login">
             <IonLabel>Đăng nhập</IonLabel>
           </IonSegmentButton>
-          <IonSegmentButton value="logout" onClick={() => setIsLogin(false)}>
+          <IonSegmentButton value="logout">
             <IonLabel>Đăng ký</IonLabel>
           </IonSegmentButton>
         </IonSegment>

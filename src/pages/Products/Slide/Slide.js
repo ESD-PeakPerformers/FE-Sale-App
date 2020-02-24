@@ -1,11 +1,13 @@
 import React from 'react'
 import {IonSlides, IonSlide} from '@ionic/react'
 import Banner1 from '../../../assets/img/Products-Banner@3x.png'
-
+import Banner2 from '../../../assets/img/Products-Banner2@3x.png'
+import Banner3 from '../../../assets/img/Products-Banner3@3x.png'
 const Slide = () => {
   const slideOpts = {
     initialSlide: 1,
-    speed: 400
+    speed: 400,
+    loop: true
   };
   return (
     <IonSlides options={slideOpts}>
@@ -13,10 +15,10 @@ const Slide = () => {
         <img src={Banner1} alt="Banner1"/>
       </IonSlide>
       <IonSlide>
-        <h1>Slide 2</h1>
+      <img src={Banner2} alt="Banner2"/>
       </IonSlide>
       <IonSlide>
-        <h1>Slide 3</h1>
+      <img src={Banner3} alt="Banner3"/>
       </IonSlide>
     </IonSlides>
   )
