@@ -27,14 +27,14 @@ const Section = ({title, link, products}) => {
               .slice(i, i + 3)
               .map(item => {
                 return (
-                  <IonItem href={"/products/" + title + "/" + item.prodCode}>
+                  <IonItem href={"/products/" + title + "-" + item.prodCode + "-" + item.prodID}>
                     <IonLabel>
                       <h4>{item.prodName}</h4>
                       <p>{item.prodCode}</p>
                     </IonLabel>
                     <IonThumbnail slot="start">
                       <img
-                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="/>
+                        src={item.image} alt={item.prodCode + '-images'}/>
                     </IonThumbnail>
                     <IonButton fill="outline" color='medium' slot="end">{item.price}</IonButton>
                   </IonItem>

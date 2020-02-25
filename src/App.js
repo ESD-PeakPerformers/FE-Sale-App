@@ -18,7 +18,7 @@ import Message from './pages/Message/Message';
 import Notification from './pages/Notification/Notification';
 import Landing from './pages/Landing'
 import Auth from './pages/Auth/Auth'
-
+import ProductDetail from './pages/ProductDetail/ProductDetail';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -47,6 +47,7 @@ const App = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/products" component={Products} exact={true}/>
+          <Route path="/products/:category-:prodCode-:id" component={ProductDetail} exact={true}/>
           <Route path="/search" component={Search} exact={true}/>
           <Route path="/message" component={Message} exact={true}/>
           <Route path="/notification" component={Notification} exact={true}/>
