@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -40,6 +40,7 @@ import './theme/variables.css';
 
 /* SASS */
 import './style/main.scss';
+import ProdByCat from './pages/ProdByCat/ProdByCat';
 
 const App = () => (
   <IonApp>
@@ -47,6 +48,7 @@ const App = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/products" component={Products} exact={true}/>
+          <Route path="/products/:category/:cateID" component={ProdByCat} exact={true}/>
           <Route path="/products/:category-:prodCode-:id" component={ProductDetail} exact={true}/>
           <Route path="/search" component={Search} exact={true}/>
           <Route path="/message" component={Message} exact={true}/>

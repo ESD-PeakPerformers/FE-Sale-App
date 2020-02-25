@@ -9,7 +9,8 @@ import {
   IonSlide,
   IonItem,
   IonThumbnail,
-  IonItemGroup
+  IonItemGroup, 
+  IonImg
 } from '@ionic/react'
 
 const Section = ({title, link, products}) => {
@@ -32,8 +33,8 @@ const Section = ({title, link, products}) => {
                       <h4>{item.prodName}</h4>
                       <p>{item.prodCode}</p>
                     </IonLabel>
-                    <IonThumbnail slot="start">
-                      <img
+                    <IonThumbnail className="Product-Thumbnail" slot="start">
+                      <IonImg
                         src={item.image} alt={item.prodCode + '-images'}/>
                     </IonThumbnail>
                     <IonButton fill="outline" color='medium' slot="end">{item.price}</IonButton>
@@ -48,7 +49,6 @@ const Section = ({title, link, products}) => {
 
   return (
     <React.Fragment>
-
       <IonToolbar>
         <IonTitle slot='start'>{title}</IonTitle>
         <IonButtons slot='end'>

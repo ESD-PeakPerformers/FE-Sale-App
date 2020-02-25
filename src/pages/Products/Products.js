@@ -8,7 +8,6 @@ import {
   IonAvatar,
   IonGrid,
   IonSearchbar,
-  IonLoading,
   IonSpinner
 
 } from '@ionic/react';
@@ -17,7 +16,7 @@ import Slide from './Slide/Slide'
 import Section from './Section/Section'
 import axios from 'axios';
 import LazyLoad from 'react-lazyload'
-import SketonText from './SketonText/SketonText';
+import SketonText from '../../components/SketonText/SketonText';
 
 const Products = () => {
   console.log(process.env.REACT_APP_BASE_URL)
@@ -42,7 +41,7 @@ const Products = () => {
         placeholder={<IonSpinner/>}>
         <Section
           title={cat.cateName}
-          link={"products/" + cat.cateName}
+          link={"products/" + cat.cateName + "/" + cat.cateID}
           products={cat.products}/>
       </LazyLoad>
     )

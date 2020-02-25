@@ -27,6 +27,7 @@ const ProductDetail = () => {
       .then(({data})=>{
           setData(data)
       })
+      .catch(err => console.log(err))
   },[])
 
   return (
