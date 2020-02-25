@@ -17,6 +17,7 @@ import Slide from './Slide/Slide'
 import Section from './Section/Section'
 import axios from 'axios';
 import LazyLoad from 'react-lazyload'
+import SketonText from './SketonText/SketonText';
 
 const Products = () => {
   console.log(process.env.REACT_APP_BASE_URL)
@@ -30,7 +31,8 @@ const Products = () => {
       })
       .catch(err => console.log(err))
   }, [])
-  const renderSection = data && data.map(cat => {
+  
+  const renderSection = data ? (data.map(cat => {
     return (
       <LazyLoad
         once={true}
@@ -44,7 +46,7 @@ const Products = () => {
           products={cat.products}/>
       </LazyLoad>
     )
-  })
+  })):(<SketonText/>)
 
   return (
     <IonPage>
