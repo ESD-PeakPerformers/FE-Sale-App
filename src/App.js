@@ -18,7 +18,7 @@ import Message from './pages/Message/Message';
 import Notification from './pages/Notification/Notification';
 import Landing from './pages/Landing'
 import Auth from './pages/Auth/Auth'
-import ProductDetail from './pages/ProductDetail/ProductDetail';
+import ProductDetail from './pages/Products/ProductDetail/ProductDetail';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -40,7 +40,7 @@ import './theme/variables.css';
 
 /* SASS */
 import './style/main.scss';
-import ProdByCat from './pages/ProdByCat/ProdByCat';
+import ProdByCat from './pages/Products/ProdByCat/ProdByCat';
 
 const App = () => (
   <IonApp>

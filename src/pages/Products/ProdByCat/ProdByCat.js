@@ -19,7 +19,7 @@ import {
 import {cartOutline} from 'ionicons/icons'
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-import SketonText from '../../components/SketonText/SketonText';
+import SketonText from '../../../components/SketonText/SketonText';
 import LazyLoad from 'react-lazyload'
 const ProdByCat = () => {
   const {category, cateID} = useParams()

@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {
   IonPage,
@@ -10,25 +10,28 @@ import {
   IonBackButton,
   IonIcon,
   IonContent,
-  IonLabel,
+  IonLabel
 } from '@ionic/react';
 import {cartOutline} from 'ionicons/icons'
 import ImageSlide from './ImageSlide/ImageSlide'
 import axios from 'axios';
 import Description from './Description/Description'
+import Rating from './Rating/Rating'
 
 const ProductDetail = () => {
 
   let {id} = useParams()
 
-  const [data, setData] = useState()
-  useEffect(()=>{
-      axios.get(process.env.REACT_APP_BASE_URL + 'products/' + id)
-      .then(({data})=>{
-          setData(data)
+  const [data,
+    setData] = useState()
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_BASE_URL + 'products/' + id)
+      .then(({data}) => {
+        setData(data)
       })
       .catch(err => console.log(err))
-  },[])
+  }, [])
 
   return (
     <IonPage>
@@ -50,8 +53,8 @@ const ProductDetail = () => {
 
       <IonContent>
         <IonGrid>
-          <ImageSlide/>
-          {data && <Description data={data}/>}
+          <ImageSlide/> {data && <Description data={data}/>}
+          <Rating/>
         </IonGrid>
       </IonContent>
     </IonPage>

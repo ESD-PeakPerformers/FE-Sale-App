@@ -1,5 +1,5 @@
 import React from 'react'
-import Img from '../../../assets/img/ProductDetail@2x.png'
+import Img from '../../../../assets/img/ProductDetail@2x.png'
 import {IonSlides,IonSlide,IonImg} from '@ionic/react'
 
 const ImageSlide = () => {
