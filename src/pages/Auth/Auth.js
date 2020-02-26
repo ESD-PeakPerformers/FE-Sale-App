@@ -11,7 +11,9 @@ import {
   IonItemGroup,
   IonInput,
   IonItem,
-  IonButton
+  IonButton,
+  IonLoading,
+  IonAlert
 } from '@ionic/react';
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
@@ -21,7 +23,10 @@ const Auth = ({history}) => {
     setSegment] = useState("login")
   const [loginInput,
     setLoginInput] = useState()
-  const [regisInput, setRegisInput] = useState()
+  const [regisInput,
+    setRegisInput] = useState()
+  const [showLoading, setShowLoading] = useState(false)
+  const [showAlert, setShowAlert] = useState({})
 
   const submitChangeHandler = (e) => {
     const {name, value} = e.target
@@ -44,24 +49,47 @@ const Auth = ({history}) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    if(segment === "login"){
+    setShowLoading(true)
+    //Dang nhap
+    if (segment === "login") {
       axios
         .post(process.env.REACT_APP_BASE_URL + 'users/login', {
         ...loginInput
       })
         .then(() => {
           history.push('/products')
+          setShowLoading(false)
         })
-        .catch(err => console.log(err))
-    }else{
+        .catch(err => {
+          setShowAlert({isShow: true, message: err.response.data})
+          setShowLoading(false)
+        })
+    } else {
+      //Dang ky
       axios
         .post(process.env.REACT_APP_BASE_URL + 'users/register', {
         ...regisInput
       })
         .then(() => {
-          history.push('/auth')
+          //Dang nhap sau khi dang ky 
+          axios
+            .post(process.env.REACT_APP_BASE_URL + 'users/login', {
+            username: regisInput.username,
+            password: regisInput.password
+          })
+            .then(() => {
+              setShowLoading(false)
+              history.push('/products')
+            })
+            .catch(err => {
+              setShowAlert({isShow: true, message: err.response.data})
+              setShowLoading(false)
+            })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          setShowAlert({isShow: true, message: err.response.data})
+          setShowLoading(false)
+        })
     }
   }
 
@@ -74,7 +102,7 @@ const Auth = ({history}) => {
               <IonInput
                 placeholder="Email"
                 type="email"
-                name="email"
+                name="username"
                 onIonInput={submitChangeHandler}
                 clearInput={true}
                 required/>
@@ -101,26 +129,50 @@ const Auth = ({history}) => {
     } else {
       return (
         <IonItemGroup>
-          <form onSubmit={submitHandler}> 
-          <IonItem>
-            <IonInput placeholder="Họ tên" name="fullname" type="text" onIonInput={regisChangeHandler} clearInput={true} required/>
-          </IonItem>
-          <IonItem>
-            <IonInput placeholder="Số điện thoại" name="phone" type="tel" onIonInput={regisChangeHandler} clearInput={true} required/>
-          </IonItem>
-          <IonItem>
-            <IonInput placeholder="Email" name="email" type="email" onIonInput={regisChangeHandler} clearInput={true} required/>
-          </IonItem>
-          <IonItem>
-            <IonInput placeholder="Mật khẩu" name="password" type='password' onIonInput={regisChangeHandler} clearInput={true} required/>
-          </IonItem>
-          <IonButton
-            style={{
-            marginTop: '2em'
-          }}
-            type='submit'
-            color="primary"
-            expand='block'>Đăng ký</IonButton>
+          <form onSubmit={submitHandler}>
+            <IonItem>
+              <IonInput
+                placeholder="Họ tên"
+                name="fullname"
+                type="text"
+                onIonInput={regisChangeHandler}
+                clearInput={true}
+                required/>
+            </IonItem>
+            <IonItem>
+              <IonInput
+                placeholder="Số điện thoại"
+                name="phone"
+                type="tel"
+                onIonInput={regisChangeHandler}
+                clearInput={true}
+                required/>
+            </IonItem>
+            <IonItem>
+              <IonInput
+                placeholder="Email"
+                name="username"
+                type="email"
+                onIonInput={regisChangeHandler}
+                clearInput={true}
+                required/>
+            </IonItem>
+            <IonItem>
+              <IonInput
+                placeholder="Mật khẩu"
+                name="password"
+                type='password'
+                onIonInput={regisChangeHandler}
+                clearInput={true}
+                required/>
+            </IonItem>
+            <IonButton
+              style={{
+              marginTop: '2em'
+            }}
+              type='submit'
+              color="primary"
+              expand='block'>Đăng ký</IonButton>
           </form>
         </IonItemGroup>
       )
@@ -144,6 +196,18 @@ const Auth = ({history}) => {
           </IonSegmentButton>
         </IonSegment>
         {renderSegment()}
+        <IonLoading
+        isOpen={showLoading}
+        message={'Đang đăng nhập...'}
+        duration={5000}
+      />
+      <IonAlert
+          isOpen={showAlert.isShow}
+          onDidDismiss={() => setShowAlert({...showAlert, isShow: false})}
+          header={'Thông báo'}
+          message={showAlert.message}
+          buttons={['Đóng']}
+        />
       </IonContent>
     </IonPage>
   )
