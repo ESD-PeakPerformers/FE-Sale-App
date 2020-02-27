@@ -1,86 +1,86 @@
 import React from 'react'
-import {IonSkeletonText, IonList, IonLabel, IonListHeader, IonItem, IonAvatar} from '@ionic/react'
+import {IonSkeletonText, IonList, IonLabel, IonItem, IonThumbnail} from '@ionic/react'
 const SketonText = () => {
     return (
         <>
           <IonList>
             <IonItem>
-              <IonAvatar slot="start">
+              <IonThumbnail slot="start">
                 <IonSkeletonText animated />
-              </IonAvatar>
+              </IonThumbnail>
               <IonLabel>
                 <h3>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </h3>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
               </IonLabel>
             </IonItem>
             <IonItem>
-              <IonAvatar slot="start">
+              <IonThumbnail slot="start">
                 <IonSkeletonText animated />
-              </IonAvatar>
+              </IonThumbnail>
               <IonLabel>
                 <h3>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </h3>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
               </IonLabel>
             </IonItem>
             <IonItem>
-              <IonAvatar slot="start">
+              <IonThumbnail slot="start">
                 <IonSkeletonText animated />
-              </IonAvatar>
+              </IonThumbnail>
               <IonLabel>
                 <h3>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </h3>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
               </IonLabel>
             </IonItem>
             <IonItem>
-              <IonAvatar slot="start">
+              <IonThumbnail slot="start">
                 <IonSkeletonText animated />
-              </IonAvatar>
+              </IonThumbnail>
               <IonLabel>
                 <h3>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </h3>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
               </IonLabel>
             </IonItem>
             <IonItem>
-              <IonAvatar slot="start">
+              <IonThumbnail slot="start">
                 <IonSkeletonText animated />
-              </IonAvatar>
+              </IonThumbnail>
               <IonLabel>
                 <h3>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </h3>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
                 <p>
-                  <IonSkeletonText animated style={{ width: '80%' }} />
+                  <IonSkeletonText animated style={{ width: '100%' }} />
                 </p>
               </IonLabel>
             </IonItem>

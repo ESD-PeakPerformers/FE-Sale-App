@@ -1,20 +1,27 @@
-import React from 'react';
-import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react';
+import React,{useRef,useEffect} from 'react';
+import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar,IonGrid,IonSearchbar} from '@ionic/react';
+import SearchTrend from './SearchTrend/SearchTrend';
+import SearchHistory from './SearchHistory/SearchHistory';
 
 const Search = () => {
+  const searchInput = useRef()
+  useEffect(() => {
+    console.log('this is run');
+    searchInput.current.focus()
+  }, [])
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader  className="ion-no-border">
         <IonToolbar>
-          <IonTitle>Search</IonTitle>
+          <IonTitle>Tìm kiếm</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Search</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <IonGrid>
+          <IonSearchbar ref={searchInput} autofocus="true" debounce={500} placeholder="Tìm kiếm sản phẩm..."></IonSearchbar>
+          <SearchTrend/>
+          <SearchHistory/>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );

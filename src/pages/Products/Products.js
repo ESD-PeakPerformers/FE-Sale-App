@@ -17,11 +17,18 @@ import Section from './Section/Section'
 import axios from 'axios';
 import LazyLoad from 'react-lazyload'
 import SketonText from '../../components/SketonText/SketonText';
+import {useHistory} from 'react-router-dom'
 
 const Products = () => {
-  console.log(process.env.REACT_APP_BASE_URL)
+  const history = useHistory()
   const [data,
     setData] = useState()
+  
+  const searchBarRedirect = () => {
+    console.log('clicked');
+    history.push('/search')
+  }
+
   useEffect(() => {
     axios
       .get(process.env.REACT_APP_BASE_URL + 'products')
@@ -62,7 +69,7 @@ const Products = () => {
 
       <IonContent>
         <IonGrid>
-          <IonSearchbar debounce={500} placeholder="Tìm kiếm sản phẩm..."></IonSearchbar>
+          <IonSearchbar onIonFocus={searchBarRedirect} debounce={500} placeholder="Tìm kiếm sản phẩm..."></IonSearchbar>
           <Slide/> {renderSection}
         </IonGrid>
       </IonContent>
