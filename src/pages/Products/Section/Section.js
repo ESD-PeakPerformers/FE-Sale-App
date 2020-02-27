@@ -37,7 +37,7 @@ const Section = ({title, link, products}) => {
                       <IonImg
                         src={item.image} alt={item.prodCode + '-images'}/>
                     </IonThumbnail>
-                    <IonButton fill="outline" color='medium' slot="end">{item.price}</IonButton>
+                    <IonButton fill="outline" color='medium' slot="end">Xem</IonButton>
                   </IonItem>
                 )
               })}

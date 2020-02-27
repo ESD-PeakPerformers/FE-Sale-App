@@ -48,7 +48,7 @@ const ProdByCat = () => {
               <h4>{item.prodName}</h4>
               <p>{item.prodCode}</p>
             </IonLabel>
-            <IonThumbnail slot="start">
+            <IonThumbnail className="Product-Thumbnail" slot="start">
               <IonImg src={item.image} alt={item.prodCode + '-images'}/>
             </IonThumbnail>
             <IonButton fill="outline" color='medium' slot="end">{item.price}</IonButton>
