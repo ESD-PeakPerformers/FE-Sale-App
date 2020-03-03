@@ -5,13 +5,13 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonAvatar,
+  IonIcon,
   IonGrid,
   IonSearchbar,
   IonSpinner
 
 } from '@ionic/react';
-import Avatar from '../../assets/img/Avatar@2x.png'
+import {cartOutline} from 'ionicons/icons'
 import Slide from './Slide/Slide'
 import Section from './Section/Section'
 import axios from 'axios';
@@ -56,13 +56,11 @@ const Products = () => {
 
   return (
     <IonPage>
-      <IonHeader className="ion-no-border">
+      <IonHeader className=" ion-no-border">
         <IonGrid>
           <IonToolbar>
             <IonTitle slot='start'>Trang chủ</IonTitle>
-            <IonAvatar slot='end' className="Product-Avatar">
-              <img src={Avatar} alt="avatar"/>
-            </IonAvatar>
+            <IonIcon style={{width: '24px', height:'24px'}} slot='end' color="primary" size='small' icon={cartOutline} />
           </IonToolbar>
         </IonGrid>
       </IonHeader>
