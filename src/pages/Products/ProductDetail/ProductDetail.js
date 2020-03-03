@@ -24,6 +24,7 @@ const ProductDetail = () => {
 
   const [data,
     setData] = useState()
+
   useEffect(() => {
     axios
       .get(process.env.REACT_APP_BASE_URL + 'products/' + id)
@@ -32,7 +33,7 @@ const ProductDetail = () => {
       })
       .catch(err => console.log(err))
   }, [])
-
+  console.log(data);
   return (
     <IonPage>
       <IonHeader className="ion-no-border">
@@ -53,7 +54,10 @@ const ProductDetail = () => {
 
       <IonContent>
         <IonGrid>
-          <ImageSlide/> {data && <Description data={data}/>}
+          {data && (
+            <React.Fragment><ImageSlide image={data.image}/>
+              <Description data={data}/></React.Fragment>
+          )}
           <Rating/>
         </IonGrid>
       </IonContent>

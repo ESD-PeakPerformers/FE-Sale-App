@@ -1,0 +1,9 @@
+@import './SideMenu.scss';
+
+.Sort-Filter{
+    border-top: 1px solid var(--ion-item-border-color);
+    border-bottom: 1px solid var(--ion-item-border-color);
+}
+.Sort-Select{
+    background-color: transparent;
+}
