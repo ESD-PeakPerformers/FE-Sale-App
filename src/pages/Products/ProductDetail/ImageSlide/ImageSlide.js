@@ -1,17 +1,18 @@
 import React from 'react'
-import Img from '../../../../assets/img/ProductDetail@2x.png'
 import {IonSlides,IonSlide,IonImg} from '@ionic/react'
+import {getImage} from '../../../../shared/Method'
 
-const ImageSlide = ({image}) => {
+const ImageSlide = ({prodID}) => {
     const slideOpts = {
     initialSlide: 1,
     speed: 400,
     loop: true
   };
+  console.log(prodID)
     return (
         <IonSlides options={slideOpts}>
             <IonSlide>
-              <IonImg src={image + 's1.png'}></IonImg>
+              <IonImg src={getImage(prodID, 1, "png")}></IonImg>
             </IonSlide>
           </IonSlides>
     )

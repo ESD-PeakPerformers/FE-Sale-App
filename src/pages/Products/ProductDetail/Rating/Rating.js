@@ -29,7 +29,7 @@ const Rating = () => {
               style={{
               margin: '0 auto'
             }}
-              value={4}
+              value={4.5}
               count={5}
               size={14}
               color1={'#EDEDED'}

@@ -12,6 +12,7 @@ import {
   IonItemGroup, 
   IonImg
 } from '@ionic/react'
+import {addDot,getImage} from '../../../shared/Method'
 
 const Section = ({title, link, products}) => {
   const slideOpts = {
@@ -32,10 +33,11 @@ const Section = ({title, link, products}) => {
                     <IonLabel>
                       <h4>{item.prodName}</h4>
                       <p>{item.prodCode}</p>
+                      <p>{addDot(item.price)}</p>
                     </IonLabel>
                     <IonThumbnail className="Product-Thumbnail" slot="start">
                       <IonImg
-                        src={item.image + "s0.png"} alt={item.prodCode + '-images'}/>
+                        src={getImage(item.prodID, 0, "png")} alt={item.prodCode + '-images'}/>
                     </IonThumbnail>
                     <IonButton fill="outline" color='medium' slot="end">Xem</IonButton>
                   </IonItem>

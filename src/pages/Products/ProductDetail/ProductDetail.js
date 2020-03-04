@@ -33,7 +33,7 @@ const ProductDetail = () => {
       })
       .catch(err => console.log(err))
   }, [])
-  console.log(data);
+
   return (
     <IonPage>
       <IonHeader className="ion-no-border">
@@ -55,7 +55,7 @@ const ProductDetail = () => {
       <IonContent>
         <IonGrid>
           {data && (
-            <React.Fragment><ImageSlide image={data.image}/>
+            <React.Fragment><ImageSlide prodID={data.prodID}/>
               <Description data={data}/></React.Fragment>
           )}
           <Rating/>

@@ -17,24 +17,23 @@ import {
   IonImg,
   IonSelectOption,
   IonSelect,
-  IonMenu,
-  IonList,
   IonMenuButton,
-  IonCol,
-  IonRow
+
 } from '@ionic/react'
-import {cartOutline, chevronDownOutline, optionsOutline} from 'ionicons/icons'
+import {cartOutline, optionsOutline} from 'ionicons/icons'
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import SketonText from '../../../components/SketonText/SketonText';
 import LazyLoad from 'react-lazyload'
 import SideMenu from './SideMenu/SideMenu';
+import {addDot, getImage} from '../../../shared/Method'
+
 const ProdByCat = () => {
   const {category, cateID} = useParams()
   const [data,
     setData] = useState()
-  const [expand,
-    setExpand] = useState(true)
+  const [optionSelected, setOptionSelected] = useState(null)
+  const [result, setResult] = useState()
 
   // Fetch data
   useEffect(() => {
@@ -47,7 +46,7 @@ const ProdByCat = () => {
 
   // Render products
   const renderItems = data
-    ? (data.map(item => {
+    ? (result && result.map(item => {
       return (
           <LazyLoad
             once={true}
@@ -58,12 +57,12 @@ const ProdByCat = () => {
             <IonItem
               href={"/products/" + item.cateName + "-" + item.prodCode + "-" + item.prodID}>
                 <IonThumbnail className="Product-Thumbnail">
-                  <IonImg src={item.image + 's0.png'} alt={item.prodCode + '-images'}/>
+                  <IonImg src={getImage(item.prodID, 0, "png")} alt={item.prodCode + '-images'}/>
                 </IonThumbnail>
                 <IonLabel style={{marginLeft: '1em'}}>
                   <h4>{item.prodName}</h4>
                   <p>{item.prodCode}</p>
-                  <p>{item.price + "đ"} </p>
+                  <p>{addDot(item.price)} </p>
                 </IonLabel>
             </IonItem>
           </LazyLoad>
@@ -74,6 +73,23 @@ const ProdByCat = () => {
   const customActionSheetOptions = {
     header: 'Sắp xếp theo:'
   };
+  const selectHandler = (e) => {
+    setOptionSelected(e.target.value)
+  }
+
+  useEffect(()=> {
+    console.log('useEffect run', optionSelected)
+    if(!optionSelected && data){
+      console.log('data ban dau')
+      setResult(data)
+    }else if (optionSelected === "price_low_to_high"){
+      const sortResult = data.sort((a, b) => a.price - b.price)
+      setResult(data)
+    } else if (optionSelected === "price_high_to_low"){
+      const sortResult = data.sort((a, b) => b.price - a.price)
+      setResult(data)
+    }
+  }, [data, optionSelected])
 
   return (
     <React.Fragment>
@@ -104,12 +120,14 @@ const ProdByCat = () => {
                     <IonSelect
                       interfaceOptions={customActionSheetOptions}
                       interface="action-sheet"
-                      cancelText="Quay lại">
-                      <IonSelectOption value="purple">Hàng mới</IonSelectOption>
-                      <IonSelectOption value="yellow">Bán chạy</IonSelectOption>
-                      <IonSelectOption value="orange">Giảm giá nhiều</IonSelectOption>
-                      <IonSelectOption value="green">Giá thấp</IonSelectOption>
-                      <IonSelectOption value="green">Giá cao</IonSelectOption>
+                      cancelText="Quay lại"
+                      onIonChange={selectHandler}
+                      >
+                      <IonSelectOption value="new_products">Hàng mới</IonSelectOption>
+                      <IonSelectOption value="best_seller">Bán chạy</IonSelectOption>
+                      <IonSelectOption value="best_discount">Giảm giá nhiều</IonSelectOption>
+                      <IonSelectOption value="price_low_to_high">Giá thấp</IonSelectOption>
+                      <IonSelectOption value="price_high_to_low">Giá cao</IonSelectOption>
                     </IonSelect>
                   </IonItem>
                 </IonButton>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   IonContent,
   IonHeader,
@@ -11,23 +11,32 @@ import {
   IonButton,
   IonIcon,
   IonButtons,
-  IonAlert
+  IonAlert,
+  useIonViewDidEnter
 } from '@ionic/react';
 import {personCircleOutline} from 'ionicons/icons'
 import {cartOutline} from 'ionicons/icons'
 import {Link} from 'react-router-dom'
-import {userInfo} from '../../shared/Method'
 import axios from 'axios';
 import Cookies from 'js-cookie'
+import decoder from 'jwt-decode'
 
 const Profile = () => {
-  const [showAlert, setShowAlert] = useState({
-    isShow: false,
-    message:''
-  })
+  const [showAlert,
+    setShowAlert] = useState({isShow: false, message: ''})
 
+  const [jwt,
+    setJWT] = useState()
+  const userInfo = jwt && decoder(jwt).user
+
+  //Cập nhật login status mới nhất mỗi khi render view
+  useIonViewDidEnter(() => {
+    setJWT(Cookies.get('jwt'))
+  }, [])
+
+  //Render thông tin người dùng dựa vào trạng thái login
   const renderUserInfo = () => {
-    if (userInfo) {
+    if (jwt) {
       return (
         <React.Fragment>
           <h3>{userInfo.fullname}</h3>
@@ -45,16 +54,20 @@ const Profile = () => {
     }
   }
 
+  //Handle signout
   const signOut = () => {
-    axios.post(process.env.REACT_APP_BASE_URL + 'users/logout',{})
-    .then(() => {
-      Cookies.remove('jwt')
-      setShowAlert({isShow:true, message:"Đăng xuất thành công"})
-    })
-    .catch(err => {
-      setShowAlert({isShow:true, message: err.response.data})
-    })
+    axios
+      .post(process.env.REACT_APP_BASE_URL + 'users/logout', {})
+      .then(() => {
+        Cookies.remove('jwt')
+        setJWT(null)
+        setShowAlert({isShow: true, message: "Đăng xuất thành công"})
+      })
+      .catch(err => {
+        setShowAlert({isShow: true, message: err.response.data})
+      })
   }
+
   return (
     <IonPage>
       {/* Header */}
@@ -71,7 +84,9 @@ const Profile = () => {
 
       {/* Content */}
       <IonContent>
-        <Link to={userInfo ? "/profile" : "/auth"}>
+        <Link to={jwt
+          ? "/profile"
+          : "/auth"}>
           <IonItem>
             <IonAvatar slot="start">
               <IonIcon size='large' icon={personCircleOutline}/>
@@ -82,15 +97,17 @@ const Profile = () => {
           </IonItem>
         </Link>
         <IonItem>Future content goes here</IonItem>
-        {userInfo && <IonButton expand='block' onClick={signOut}>Đăng xuất</IonButton>}
+        {jwt && <IonButton expand='block' onClick={signOut}>Đăng xuất</IonButton>}
       </IonContent>
       <IonAlert
-          isOpen={showAlert.isShow}
-          onDidDismiss={() => setShowAlert({...showAlert, isShow: false})}
-          header={'Thông báo'}
-          message={showAlert.message}
-          buttons={['Đóng']}
-        />
+        isOpen={showAlert.isShow}
+        onDidDismiss={() => setShowAlert({
+        ...showAlert,
+        isShow: false
+      })}
+        header={'Thông báo'}
+        message={showAlert.message}
+        buttons={['Đóng']}/>
     </IonPage>
   );
 };

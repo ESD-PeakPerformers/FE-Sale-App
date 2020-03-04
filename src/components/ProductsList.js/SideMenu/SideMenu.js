@@ -11,7 +11,9 @@ import {
   IonButton,
   IonLabel,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
+  IonItemOptions,
+  IonItemOption
 } from '@ionic/react'
 
 const SideMenu = () => {

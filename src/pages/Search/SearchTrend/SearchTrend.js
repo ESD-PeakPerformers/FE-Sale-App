@@ -1,7 +1,6 @@
 import React from 'react'
 import {IonButton, IonItemGroup} from '@ionic/react'
 import SketonTextSearch from '../../../components/SketonText/SketonTextSearch';
-import {Link} from 'react-router-dom';
 const SearchTrend = () => {
   const hotKeys = [
     "Bàn làm việc",

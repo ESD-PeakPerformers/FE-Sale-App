@@ -1,21 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {
   IonButton,
   IonToolbar,
-  IonTitle,
   IonButtons,
   IonItemGroup,
-  IonItem,
-  IonLabel
 } from '@ionic/react';
 import ReactStarts from 'react-stars'
+import {addDot} from '../../../../shared/Method'
 
 const Description = ({data}) => {
     return (
       <div className="Product-Description">
         <div className="Product-Description-Header">
           <h2>{data.prodName}</h2>
-          <p className="Product-Description-Price">{data.price + 'đ'}</p>
+          <p className="Product-Description-Price">{addDot(data.price)}</p>
           <ReactStarts
             style={{
             margin: '0 auto'
