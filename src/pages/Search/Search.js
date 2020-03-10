@@ -15,7 +15,7 @@ import {
 import SearchTrend from './SearchTrend/SearchTrend';
 import SearchHistory from './SearchHistory/SearchHistory';
 import axios from 'axios';
-import ProductsList from '../../components/ProductsList.js/ProductsList';
+import ProductsList from '../../components/ProductsList/ProductsList';
 import {getImage} from '../../shared/Method'
 
 const Search = () => {

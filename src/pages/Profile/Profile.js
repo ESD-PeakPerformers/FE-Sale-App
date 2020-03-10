@@ -57,7 +57,7 @@ const Profile = () => {
   //Handle signout
   const signOut = () => {
     axios
-      .post(process.env.REACT_APP_BASE_URL + 'users/logout', {})
+      .post(process.env.REACT_APP_BASE_URL + 'auth/logout', {})
       .then(() => {
         Cookies.remove('jwt')
         setJWT(null)

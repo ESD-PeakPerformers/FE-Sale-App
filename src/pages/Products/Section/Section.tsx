@@ -14,7 +14,24 @@ import {
 } from '@ionic/react'
 import {addDot,getImage} from '../../../shared/Method'
 
-const Section = ({title, link, products}) => {
+interface Product{
+  date: string, 
+  image: string, 
+  rating: number
+  cateID: number,
+  price: number
+  prodCode: string, 
+  prodID: number
+  prodName: string
+}
+
+interface Props{
+  title: string, 
+  link: string, 
+  products: Product[]
+}
+
+const Section: React.FC<Props> = ({title, link, products}) => {
   const slideOpts = {
     initialSlide: 1,
     speed: 400,

@@ -9,7 +9,6 @@ import {
   IonGrid,
   IonSearchbar,
   IonSpinner
-
 } from '@ionic/react';
 import {cartOutline} from 'ionicons/icons'
 import Slide from './Slide/Slide'
@@ -19,10 +18,29 @@ import LazyLoad from 'react-lazyload'
 import SketonText from '../../components/SketonText/SketonText';
 import {useHistory} from 'react-router-dom'
 
+
+interface Product{
+  date: string, 
+  image: string, 
+  rating: number
+  cateID: number,
+  price: number
+  prodCode: string, 
+  prodID: number
+  prodName: string
+}
+interface Section{
+  cateID: number,
+  cateCode: string,
+  cateName: string,
+  products: Product[]
+}
+
+
 const Products = () => {
   const history = useHistory()
   const [data,
-    setData] = useState()
+    setData] = useState<null | Section[]>()
   
   const searchBarRedirect = () => {
     console.log('clicked');

@@ -49,7 +49,10 @@ const App = () => (
         <IonRouterOutlet>
           <Route path="/products" component={Products} exact={true}/>
           <Route path="/products/:category/:cateID" component={ProdByCat} exact={true}/>
-          <Route path="/products/:category-:prodCode-:id" component={ProductDetail} exact={true}/>
+          <Route
+            path="/products/:category-:prodCode-:id"
+            component={ProductDetail}
+            exact={true}/>
           <Route path="/search" component={Search} exact={true}/>
           <Route path="/message" component={Message} exact={true}/>
           <Route path="/notification" component={Notification} exact={true}/>
@@ -80,9 +83,9 @@ const App = () => (
           </IonTabButton>
 
           <IonTabButton tab="profile" href="/profile">
-              <IonIcon icon={personCircleOutline}/>
-              <IonLabel>Cá nhân</IonLabel>
-            </IonTabButton>
+            <IonIcon icon={personCircleOutline}/>
+            <IonLabel>Cá nhân</IonLabel>
+          </IonTabButton>
 
         </IonTabBar>
       </IonTabs>
