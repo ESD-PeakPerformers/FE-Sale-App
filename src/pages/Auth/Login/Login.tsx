@@ -29,20 +29,6 @@ const Login: React.FC<Props> = ({submitHandler}) => {
       [name]: value
     }))
   }
-  const loginWithFacebook = () => {
-      axios.get(process.env.REACT_APP_BASE_URL + 'auth/facebook')
-      .then((data)=>{
-        console.log(data);
-      })
-      .catch(err => console.log(err))
-  }
-  const loginWithGoogle= () => {
-    axios.get(process.env.REACT_APP_BASE_URL + 'auth/google')
-    .then(()=>{
-
-    })
-    .catch(err => console.log(err))
-}
 
     return (
         <IonItemGroup>
@@ -78,13 +64,13 @@ const Login: React.FC<Props> = ({submitHandler}) => {
           <IonButton
             color="danger"
             style={{marginTop: '1.5em'}}
-            href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fgoogle%2Fcallback&scope=openid%20email%20profile&client_id=189453637136-p66dl5k2flq4tmecjvcs7kvm37qgc219.apps.googleusercontent.com"
+            href={process.env.REACT_APP_BASE_URL + 'auth/google'}
             expand='block'><IonIcon icon={logoGoogle}/></IonButton>
 
             <IonButton
             color="primary"
             style={{marginTop: '1em'}}
-            href="https://www.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A3000%2Fauth%2Ffacebook%2Fcallback&scope=email&client_id=515455325837586"
+            href={process.env.REACT_APP_BASE_URL + 'auth/facebook'}
             type='submit'
             expand='block'><IonIcon icon={logoFacebook}/></IonButton>
         </IonItemGroup>

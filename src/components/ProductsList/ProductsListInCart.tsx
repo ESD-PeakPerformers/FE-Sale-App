@@ -3,10 +3,26 @@ import {IonItem, IonThumbnail, IonImg, IonLabel} from '@ionic/react'
 import LazyLoad from 'react-lazyload'
 import SketonText from '../SketonText/SketonText'
 import {addDot, getImage} from '../../shared/Method'
+interface Props{
+  cartItems: {
+    count: number, 
+    items: Item[]
+  }
+}
+interface Item{
+  cateID: number, 
+  cateName: string, 
+  cateCode: string, 
+  prodID: number, 
+  prodCode: string, 
+  prodName: string, 
+  price: number, 
+  image: string
+}
 
-const ProductsList = ({result}) => {
-  const renderItems = result
-    ? (result.map(item => {
+const ProductsList: React.FC<Props> = ({cartItems}) => {
+  const renderItems = cartItems
+    ? (cartItems.items.map(item => {
       return (
         <LazyLoad
           once={true}

@@ -10,12 +10,12 @@ import {
   IonTabs
 } from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
-import {homeOutline, searchOutline, chatbubbleOutline, notificationsOutline, personCircleOutline} from 'ionicons/icons';
+import {homeOutline, searchOutline, chatbubbleOutline, personCircleOutline, cartOutline} from 'ionicons/icons';
 import Products from './pages/Products/Products';
 import Search from './pages/Search/Search';
 import Profile from './pages/Profile/Profile';
 import Message from './pages/Message/Message';
-import Notification from './pages/Notification/Notification';
+import Cart from './pages/Cart/Cart';
 import Landing from './pages/Landing'
 import Auth from './pages/Auth/Auth'
 import ProductDetail from './pages/Products/ProductDetail/ProductDetail';
@@ -55,7 +55,7 @@ const App = () => (
             exact={true}/>
           <Route path="/search" component={Search} exact={true}/>
           <Route path="/message" component={Message} exact={true}/>
-          <Route path="/notification" component={Notification} exact={true}/>
+          <Route path="/cart" component={Cart} exact={true}/>
           <Route path="/profile" component={Profile} exact={true}/>
           <Route path="/auth" component={Auth} exact={true}/>
           <Route path="/" component={Landing} exact={true}/>
@@ -77,9 +77,9 @@ const App = () => (
             <IonLabel>Tin nhắn</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="notification" href="/notification">
-            <IonIcon icon={notificationsOutline}/>
-            <IonLabel>Thông báo</IonLabel>
+          <IonTabButton tab="notification" href="/cart">
+            <IonIcon icon={cartOutline}/>
+            <IonLabel>Giỏ hàng</IonLabel>
           </IonTabButton>
 
           <IonTabButton tab="profile" href="/profile">

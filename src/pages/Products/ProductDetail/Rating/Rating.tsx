@@ -26,9 +26,6 @@ const Rating = () => {
           <div>
             <IonLabel>{cm.username}</IonLabel>
             <ReactStarts
-              style={{
-              margin: '0 auto'
-            }}
               value={4.5}
               count={5}
               size={14}

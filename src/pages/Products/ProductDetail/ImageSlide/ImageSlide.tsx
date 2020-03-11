@@ -2,7 +2,7 @@ import React from 'react'
 import {IonSlides,IonSlide,IonImg} from '@ionic/react'
 import {getImage} from '../../../../shared/Method'
 
-const ImageSlide = ({prodID}) => {
+const ImageSlide = ({prodID}:{prodID:number}) => {
     const slideOpts = {
     initialSlide: 1,
     speed: 400,

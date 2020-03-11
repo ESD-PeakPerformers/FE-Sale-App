@@ -1,9 +1,17 @@
 import decoder from 'jwt-decode'
 import Cookies from 'js-cookie'
 
-export const userInfo = Cookies.get('jwt') && decoder(Cookies.get('jwt')).user;
+interface UserInfo{
+  user: {
+    username: string,
+    fullname: string,
+    phone: string
+  },
+}
+export const userInfo = Cookies.get('jwt') && decoder<UserInfo>(Cookies.get('jwt')!).user; 
 
-export const addDot = (num) => {
+
+export const addDot = (num:number) => {
   let numToArr = num.toString().split("").reverse()
   for (let i = 3; i < numToArr.length; i += 4){
     numToArr.splice(i, 0, ".")
@@ -13,6 +21,6 @@ export const addDot = (num) => {
   return result
 };
 
-export const getImage = (prodID, size,format) => {
+export const getImage = (prodID:number, size:number,format:string) => {
   return process.env.REACT_APP_IMAGE_URL + prodID.toString() + '_s' + size.toString() + "." + format
 }

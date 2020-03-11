@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef, useEffect, useState, FormEvent} from 'react';
 import {
   IonContent,
   IonHeader,
@@ -17,21 +17,43 @@ import SearchHistory from './SearchHistory/SearchHistory';
 import axios from 'axios';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import {getImage} from '../../shared/Method'
+import { SearchbarChangeEventDetail } from '@ionic/core';
+
+interface Product{
+    date: string, 
+    image: string, 
+    rating: number
+    cateID: number,
+    price: number
+    prodCode: string, 
+    prodID: number
+    prodName: string,
+    cateName: string
+}
+
+interface SearchResult{
+  _index: string,
+  _type: string,
+  _id: string,
+  _score: number,
+  _source: Product
+}
+
 
 const Search = () => {
   const searchInput = useRef()
   const [input,
     setInput] = useState()
   const [result,
-    setResult] = useState()
+    setResult] = useState<SearchResult[]>()
   const [searchFinish,
     setSearchFinish] = useState(false)
 
-  const changeHandler = (e) => {
-    setInput(e.target.value)
+  const changeHandler = (e:CustomEvent<SearchbarChangeEventDetail>) => {
+    setInput((e.target as HTMLInputElement).value)
   }
 
-  const searchSubmitHandler = (e) => {
+  const searchSubmitHandler = (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSearchFinish(true)
   }
@@ -46,7 +68,7 @@ const Search = () => {
         }
       }
     }, {withCredentials: false}).then(({data}) => {
-      setResult(data.hits)
+      setResult(data.hits.hits)
     })
   }, [input])
 
@@ -55,8 +77,7 @@ const Search = () => {
       return (
         <IonItemGroup>
           {result && result
-            .hits
-            .map(item => {
+            .map((item) => {
               return (
                 <IonItem
                   href={"/products/" + item._source.prodCode + "-" + item._source.prodID}>
@@ -76,16 +97,10 @@ const Search = () => {
           <SearchHistory/>
         </React.Fragment>
       )
-    } else {
-      return <ProductsList data={result && result.hits}/>
+    } else if (result){
+      return <ProductsList data={result}/>
     }
   }
-  useEffect(() => {
-    searchInput
-      .current
-      .focus()
-  }, [])
-
   return (
     <IonPage>
       <IonHeader className="ion-no-border">
@@ -97,8 +112,6 @@ const Search = () => {
         <IonGrid>
           <form onSubmit={searchSubmitHandler}>
             <IonSearchbar
-              ref={searchInput}
-              autofocus="true"
               onIonChange={changeHandler}
               debounce={500}
               placeholder="Tìm kiếm sản phẩm..."></IonSearchbar>

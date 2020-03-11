@@ -74,7 +74,7 @@ const Products = () => {
 
   return (
     <IonPage>
-      <IonHeader className=" ion-no-border">
+      <IonHeader className="ion-no-border">
         <IonGrid>
           <IonToolbar>
             <IonTitle slot='start'>Trang chủ</IonTitle>

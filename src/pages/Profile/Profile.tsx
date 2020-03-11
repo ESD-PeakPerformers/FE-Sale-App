@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   IonContent,
   IonHeader,
@@ -21,39 +21,49 @@ import axios from 'axios';
 import Cookies from 'js-cookie'
 import decoder from 'jwt-decode'
 
+interface userInfo{
+  user: {
+    username: string,
+    fullname: string,
+    phone: string,
+    contractDate?: string
+  },
+  iat: string
+}
+
 const Profile = () => {
   const [showAlert,
     setShowAlert] = useState({isShow: false, message: ''})
 
   const [jwt,
     setJWT] = useState()
-  const userInfo = jwt && decoder(jwt).user
+    
+  const userInfo = jwt && decoder<userInfo>(jwt).user
 
   //Cập nhật login status mới nhất mỗi khi render view
   useIonViewDidEnter(() => {
     setJWT(Cookies.get('jwt'))
   }, [])
 
-  //Render thông tin người dùng dựa vào trạng thái login
-  const renderUserInfo = () => {
-    if (jwt) {
-      return (
-        <React.Fragment>
-          <h3>{userInfo.fullname}</h3>
-          <p>{userInfo.username}</p>
-          <p>{"Thành viên từ: " + userInfo.contractDate}</p>
-        </React.Fragment>
-      )
-    } else {
-      return (
-        <React.Fragment>
-          <h3>Chào mừng bạn đến với DIK.</h3>
-          <p>Đăng nhập / Đăng ký</p>
-        </React.Fragment>
-      )
-    }
+//Render thông tin người dùng dựa vào trạng thái login
+const renderUserInfo = () => {
+  if (userInfo) {
+    return (
+      <React.Fragment>
+        <h3>{userInfo.fullname}</h3>
+        <p>{userInfo.username}</p>
+        <p>{"Thành viên từ: " + userInfo.contractDate}</p>
+      </React.Fragment>
+    )
+  } else {
+    return (
+      <React.Fragment>
+        <h3>Chào mừng bạn đến với DIK.</h3>
+        <p>Đăng nhập / Đăng ký</p>
+      </React.Fragment>
+    )
   }
-
+}
   //Handle signout
   const signOut = () => {
     axios
@@ -111,5 +121,6 @@ const Profile = () => {
     </IonPage>
   );
 };
+
 
 export default Profile;

@@ -2,9 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import * as sw from './sw';
 import axios from 'axios'
-ReactDOM.render(<App />, document.getElementById('root'));
+import {createStore} from 'redux'
+import rootReducer from './redux/root.reducer'
+import {Provider} from 'react-redux'
+import store from './redux/store'
+
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
 
 axios.defaults.withCredentials = true
 // If you want your app to work offline and load faster, you can change
@@ -12,8 +16,3 @@ axios.defaults.withCredentials = true
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.register();
 
-if('serviceWorker' in navigator){
-    navigator.serviceWorker
-    .register('/sw.js')
-    .then(console.log('registered'))
-}
