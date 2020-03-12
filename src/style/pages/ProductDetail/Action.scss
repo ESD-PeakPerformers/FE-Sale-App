@@ -1,0 +1,14 @@
+.ProductDetail-Action-ProductCount{
+    margin: 1em 0 1em 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    span{
+        margin-right: .7em;
+    }
+    p{
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-right: .7em;
+    }
+}

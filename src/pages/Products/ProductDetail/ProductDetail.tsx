@@ -9,12 +9,6 @@ import ImageSlide from './ImageSlide/ImageSlide'
 import axios from 'axios';
 import Description from './Description/Description'
 import Rating from './Rating/Rating'
-
-import {connect} from 'react-redux'
-import {selectCartCount} from '../../../redux/Cart/Cart.selector'
-import {addItemToCart} from '../../../redux/Cart/Cart.actions'
-
-import { Dispatch } from 'redux';
 import Header from './Header/Header'
 import Action from './Action/Action';
 
@@ -35,11 +29,7 @@ interface State{
       items: Item[]
   }
 }
-interface Props{
-  count: number,
-  addItemToCard: (data: Item) => void
-}
-const ProductDetail:React.FC<Props> = ({count,addItemToCard}) => {
+const ProductDetail = () => {
   const [product,
     setProduct] = useState()
   //Lấy productID từ params của url 
@@ -57,13 +47,13 @@ const ProductDetail:React.FC<Props> = ({count,addItemToCard}) => {
 
   return (
     <IonPage>
-      <Header count={count}/>
+      <Header/>
       <IonContent>
         <IonGrid>
           {product && (
             <React.Fragment>
             <ImageSlide prodID={product.prodID}/>  
-            <Action product={product} addItemToCard={addItemToCard} />
+            <Action product={product}/>
             <Description products={product}/>
             </React.Fragment>
           )}
@@ -75,11 +65,5 @@ const ProductDetail:React.FC<Props> = ({count,addItemToCard}) => {
   
 }
 
-const mapStateToProps = (state:State) => ({
-  count: selectCartCount(state)
-})
 
-const mapDispatchToProps = (dispatch:Dispatch) => ({
-  addItemToCard: (item:Item) => dispatch(addItemToCart(item))
-})
-export default connect(mapStateToProps,mapDispatchToProps)(ProductDetail)
+export default ProductDetail
