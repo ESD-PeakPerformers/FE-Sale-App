@@ -6,9 +6,11 @@ import {add, remove} from 'ionicons/icons'
 import {connect} from 'react-redux'
 import {selectCartCount} from '../../../../redux/Cart/Cart.selector'
 import {addItemToCart} from '../../../../redux/Cart/Cart.actions'
+import Cookies from 'js-cookie'
 
 import { Dispatch } from 'redux';
 import axios from 'axios';
+var jwt =  require('jwt-simple')
 interface State{
   cart: {
       count: number, 
@@ -23,7 +25,8 @@ interface Item{
     prodCode: string, 
     prodName: string, 
     price: number, 
-    image: string
+    image: string,
+    quantity?:string
   }
 interface Props {
     product: Item,
@@ -32,6 +35,7 @@ interface Props {
 
 const Action:React.FC<Props> = ({product, addItemToCard}) => {
   const [quantity, setQuantity] = useState(1)
+
   const decreaseHandler = () => {
     if(quantity > 0){
       setQuantity(prev => prev - 1)
@@ -40,15 +44,56 @@ const Action:React.FC<Props> = ({product, addItemToCard}) => {
   const increaseHandler = () => {
     setQuantity(prev => prev + 1)
   }
+
+  //Handle add item to cart 
   const onAddToCart = () => {
-    addItemToCard(quantity)
-    const body = {
-      quantity: quantity,
-      prodID: product.prodID
+    
+    //Nếu user đã login => gửi thẳng item trong cart về db 
+    if(Cookies.get('jwt')){
+      const body = {
+        quantity: quantity,
+        prodID: product.prodID
+      }
+      axios.post(process.env.REACT_APP_BASE_URL + 'carts/add')
+      .then(()=>console.log('add item to cart'))
+      .catch(err=>console.log(err))
+      
+    }else if (!Cookies.get('CART')){ //Nếu user chưa login => thêm item đầu tiên vào cart lưu trong cookies
+      const cart = {
+        products: [{...product, quantity: quantity}]
+      }
+      console.log(cart)
+      const token = jwt.encode(cart, 'xxx')
+      Cookies.set('CART', token)
+      addItemToCard(quantity)
+    }else{  //Nếu trong cookie cart đã có item 
+      let cart = jwt.decode(Cookies.get('CART'), 'xxx')
+
+      let check = false;
+      //Duyệt qua mảng xem đã tồn tại item này trong cart chưa 
+      for(let i = 0; i <= cart.products.length - 1; i++){
+        //Nếu item đã tồn tại trong cart => cộng số lượng thêm vào với số lượng sẵn có 
+        if(cart.products[i].prodID === product.prodID){
+          cart.products[i].quantity! += quantity
+          check = true
+          break;
+        }
+      }
+        //Nếu item chưa tồn tại trong cart => thêm item này vào 
+      if (check === false){
+        cart.products.push({...product, quantity: quantity})
+      }
+      
+      //Tính tổng số item trong cart để hiện số trên icon giỏ hàng
+      const totalInCart = cart.products.reduce((accumulator:number, currentElement:Item) => accumulator + currentElement.quantity!, 0)
+      cart = {...cart, totalInCart: totalInCart}
+      addItemToCard(totalInCart)
+
+      const token = jwt.encode(cart, 'xxx')
+      Cookies.set('CART', token)
     }
-    axios.post(process.env.REACT_APP_BASE_URL + 'carts/add')
-    .then(()=>console.log('add item to cart'))
-    .catch(err=>console.log(err))
+    
+
   }
     return (
         <div className="Product-Description-Header">

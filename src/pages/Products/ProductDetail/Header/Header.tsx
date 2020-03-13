@@ -9,6 +9,7 @@ import {IonHeader,
 import Cart from '../../../../components/Cart/Cart'
 import {connect} from 'react-redux'
 import {selectCartCount} from '../../../../redux/Cart/Cart.selector'
+
 interface State{
   cart: {
       count: number, 

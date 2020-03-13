@@ -1,5 +1,10 @@
+import Cookies from 'js-cookie'
+var jwt =  require('jwt-simple')
+
+const cookiesCount = Cookies.get('CART') && jwt.decode(Cookies.get('CART')!, 'xxx').totalInCart
+
 const initialState = {
-    count: 0,
+    count: cookiesCount,
 }
 
 interface Payload{
@@ -11,11 +16,10 @@ const CartReducer = (state=initialState, {type, payload}:{type:string, payload:P
         case "ADD_ITEM_TO_CART":
             return{
                 ...state, 
-                count: state.count + payload.count, 
+                count: payload.count, 
             }
         default:
             return state
         }
 }
-
 export default CartReducer
