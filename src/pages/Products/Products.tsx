@@ -8,15 +8,17 @@ import {
   IonIcon,
   IonGrid,
   IonSearchbar,
-  IonSpinner
+  IonSpinner,
+  IonButtons, 
+  IonButton
 } from '@ionic/react';
-import {cartOutline} from 'ionicons/icons'
 import Slide from './Slide/Slide'
 import Section from './Section/Section'
 import axios from 'axios';
 import LazyLoad from 'react-lazyload'
 import SketonText from '../../components/SketonText/SketonText';
 import {useHistory} from 'react-router-dom'
+import Cart from '../../components/Cart/Cart'
 
 
 interface Product{
@@ -78,7 +80,6 @@ const Products = () => {
         <IonGrid>
           <IonToolbar>
             <IonTitle slot='start'>Trang chủ</IonTitle>
-            <IonIcon style={{width: '24px', height:'24px'}} slot='end' color="primary" size='small' icon={cartOutline} />
           </IonToolbar>
         </IonGrid>
       </IonHeader>
