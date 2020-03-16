@@ -19,6 +19,8 @@ interface Props{
   cartItems: Item[]
 }
 const ProductsList:React.FC<Props> = ({cartItems}) => {
+  console.log(cartItems);
+  const total = cartItems.reduce((accumulator, current) => accumulator + current.quantity!, 0)
   const renderItems = cartItems
     ? (cartItems.map(item => {
       return (
@@ -28,15 +30,15 @@ const ProductsList:React.FC<Props> = ({cartItems}) => {
           overflow
           throttle={300}
           placeholder={< SketonText />}>
-          <IonItem
-            href={"/products/" + item.cateName + "-" + item.prodCode + "-" + item.prodID}>
+          <h2 id="ProductLitsInCard-h2">{total + ' sản phẩm'}</h2>
+          <IonItem className="ProductsListInCart">
             <IonThumbnail className="Product-Thumbnail">
               <IonImg src={getImage(item.prodID, 0, "png")} alt={item.prodCode + '-images'}/>
             </IonThumbnail>
             <IonLabel style={{
               marginLeft: '1em'
             }}>
-              <h4>{item.prodName}</h4>
+              <h2>{item.prodName + " x " + item.quantity + " sản phẩm"}</h2>
               <p>{item.prodCode}</p>
               <p>{addDot(item.price)}
               </p>

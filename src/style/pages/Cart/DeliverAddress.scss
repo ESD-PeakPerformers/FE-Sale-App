@@ -1,0 +1,21 @@
+.DeliverAddress{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.DeliverAddress div {
+    margin-left: .5em;
+    padding: 1em;
+    h4{
+        font-weight: bold;
+        font-size: 14px;
+    }
+    p{
+        font-size: 12px; 
+        margin-top: .3em;
+        color: $placeholder;
+    }
+}
