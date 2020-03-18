@@ -85,9 +85,9 @@ const renderUserInfo = () => {
         <IonToolbar>
           <IonTitle slot='start'>Cá nhân</IonTitle>
           <IonButtons slot="end">
-            <IonButton href="/cart">
+            {/* <IonButton href="/cart">
               <IonIcon icon={cartOutline}/>
-            </IonButton>
+            </IonButton> */}
           </IonButtons>
         </IonToolbar>
       </IonHeader>

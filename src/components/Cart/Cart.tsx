@@ -30,7 +30,7 @@ interface State{
 const Cart:React.FC<Props> = ({count}) => {
     return (
         <IonButtons slot='end'>
-            <IonButton color="primary">
+            <IonButton color="primary" href='/cart'>
             <IonIcon icon={cartOutline}/>
             <span className={count === 0 ? "d-none" : "Cart-count"}>{count}</span>
             </IonButton>

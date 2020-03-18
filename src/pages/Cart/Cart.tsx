@@ -72,9 +72,9 @@ const Cart = () => {
               <DeliverAddress />
               <Payment />
               <Total cartItems={cartItems.products} />
+              <IonButton className="Cart-PayButton" fill='solid' expand='block'>Thanh toán</IonButton>
             </React.Fragment>
           ) : null}
-          <IonButton className="Cart-PayButton" fill='solid' expand='block'>Thanh toán</IonButton>
         </IonGrid>
       </IonContent>
     </IonPage>

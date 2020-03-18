@@ -47,7 +47,7 @@ const Auth:React.FC = () => {
     //Dang nhap
     if (segment === "login") {
       axios
-        .post(process.env.REACT_APP_BASE_URL + 'auth/local/login', {
+        .post(process.env.REACT_APP_BASE_URL + 'auth/jwt/login', {
         ...data
       })
         .then(() => {
@@ -61,7 +61,7 @@ const Auth:React.FC = () => {
     } else {
       //Dang ky
       axios
-        .post(process.env.REACT_APP_BASE_URL + 'auth/local/register', {
+        .post(process.env.REACT_APP_BASE_URL + 'auth/register', {
         ...data
       })
         .then(() => {
@@ -71,7 +71,7 @@ const Auth:React.FC = () => {
             password: data.password
           }
           axios
-            .post(process.env.REACT_APP_BASE_URL + 'auth/local/login', body)
+            .post(process.env.REACT_APP_BASE_URL + 'auth/jwt/login', body)
             .then(() => {
               setShowLoading(false)
               history.push('/products')
