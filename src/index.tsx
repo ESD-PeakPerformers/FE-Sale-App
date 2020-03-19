@@ -7,14 +7,15 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import Cookies from "js-cookie";
 
-const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL
-});
+// const instance = axios.create({
+//   baseURL: process.env.REACT_APP_BASE_URL
+// });
 
-// Alter defaults after instance has been created
-instance.defaults.headers.common["Authorization"] =
-  "Bearer " + Cookies.get("jwt");
-
+// // Alter defaults after instance has been created
+// instance.defaults.headers.common["Authorization"] =
+//   "Bearer " + Cookies.get("jwt");
+axios.defaults.headers.common['Authorization'] = "Bearer " + Cookies.get("jwt")
+axios.defaults.withCredentials = true
 ReactDOM.render(
   <Provider store={store}>
     <App />

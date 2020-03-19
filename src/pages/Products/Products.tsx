@@ -18,8 +18,7 @@ import axios from 'axios';
 import LazyLoad from 'react-lazyload'
 import SketonText from '../../components/SketonText/SketonText';
 import {useHistory} from 'react-router-dom'
-import Cart from '../../components/Cart/Cart'
-
+import Cookies from 'js-cookie'
 
 interface Product{
   date: string, 
@@ -48,7 +47,7 @@ const Products = () => {
     console.log('clicked');
     history.push('/search')
   }
-
+  const token = Cookies.get('jwt')
   useEffect(() => {
     axios
       .get(process.env.REACT_APP_BASE_URL + 'products')

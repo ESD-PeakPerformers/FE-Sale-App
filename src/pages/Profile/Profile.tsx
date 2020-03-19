@@ -15,7 +15,6 @@ import {
   useIonViewDidEnter
 } from '@ionic/react';
 import {personCircleOutline} from 'ionicons/icons'
-import {cartOutline} from 'ionicons/icons'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import Cookies from 'js-cookie'
