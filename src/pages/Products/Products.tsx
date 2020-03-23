@@ -5,12 +5,9 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonIcon,
   IonGrid,
   IonSearchbar,
-  IonSpinner,
-  IonButtons, 
-  IonButton
+  IonSpinner
 } from '@ionic/react';
 import Slide from './Slide/Slide'
 import Section from './Section/Section'
@@ -19,17 +16,8 @@ import LazyLoad from 'react-lazyload'
 import SketonText from '../../components/SketonText/SketonText';
 import {useHistory} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import {Product} from '../../shared/Products.type'
 
-interface Product{
-  date: string, 
-  image: string, 
-  rating: number
-  cateID: number,
-  price: number
-  prodCode: string, 
-  prodID: number
-  prodName: string
-}
 interface Section{
   cateID: number,
   cateCode: string,

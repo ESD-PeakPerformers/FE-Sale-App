@@ -5,7 +5,7 @@ import {IonButtons,
 import {cartOutline} from 'ionicons/icons'
 import {connect} from 'react-redux'
 import {selectCartCount} from '../../redux/Cart/Cart.selector'
-
+import {State} from '../../redux/root.reducer.type'
 interface Props {
     count: number
 }
@@ -20,12 +20,7 @@ interface Item{
     price: number, 
     image: string
 }
-interface State{
-    cart: {
-        count: number, 
-        items: Item[]
-    }
-}
+
 
 const Cart:React.FC<Props> = ({count}) => {
     return (

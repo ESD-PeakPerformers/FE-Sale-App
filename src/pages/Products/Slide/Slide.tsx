@@ -3,12 +3,14 @@ import {IonSlides, IonSlide} from '@ionic/react'
 import Banner1 from '../../../assets/img/Products-Banner@3x.png'
 import Banner2 from '../../../assets/img/Products-Banner2@3x.png'
 import Banner3 from '../../../assets/img/Products-Banner3@3x.png'
+
 const Slide = () => {
   const slideOpts = {
     initialSlide: 1,
     speed: 400,
     loop: true
   };
+
   return (
     <IonSlides options={slideOpts}>
       <IonSlide>
@@ -24,4 +26,4 @@ const Slide = () => {
   )
 }
 
-export default Slide
+export default React.memo(Slide)

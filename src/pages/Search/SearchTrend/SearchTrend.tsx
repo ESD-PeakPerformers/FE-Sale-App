@@ -12,6 +12,7 @@ const SearchTrend = () => {
     "Thảm",
     "Rèm cửa"
   ]
+  //Render những từ khoá hot
   const renderHotKeys = hotKeys
     ? hotKeys.map(item => <IonButton className="SearchTrend-Keyword" fill='outline' size='small'>{item}</IonButton>)
     : <SketonTextSearch/>

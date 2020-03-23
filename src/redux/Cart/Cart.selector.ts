@@ -1,21 +1,5 @@
 import {createSelector} from 'reselect'
-interface Item{
-    cateID: number, 
-    cateName: string, 
-    cateCode: string, 
-    prodID: number, 
-    prodCode: string, 
-    prodName: string, 
-    price: number, 
-    image: string
-}
-
-interface State{
-    cart: {
-        count: number, 
-        items: Item[]
-    }
-}
+import {State} from '../root.reducer.type'
 
 const selectCart = (state:State) => state.cart
 

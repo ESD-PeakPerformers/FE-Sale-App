@@ -13,17 +13,7 @@ import {
   IonImg
 } from '@ionic/react'
 import {addDot,getImage} from '../../../shared/Method'
-
-interface Product{
-  date: string, 
-  image: string, 
-  rating: number
-  cateID: number,
-  price: number
-  prodCode: string, 
-  prodID: number
-  prodName: string
-}
+import {Product} from '../../../shared/Products.type'
 
 interface Props{
   title: string, 

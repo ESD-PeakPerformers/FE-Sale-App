@@ -17,22 +17,11 @@ import jwt from "jwt-simple";
 import DeliverAddress from "./DeliverAddress/DeliverAddress";
 import Payment from "./Payment/Payment";
 import Total from "./Total/Total";
-
-interface Item {
-  cateID: number;
-  cateName: string;
-  cateCode: string;
-  prodID: number;
-  prodCode: string;
-  prodName: string;
-  price: number;
-  image: string;
-  quantity?: number;
-}
+import {Product} from '../../shared/Products.type'
 
 interface State {
   count: number;
-  products: Item[];
+  products: Product[];
 }
 
 const Cart = () => {

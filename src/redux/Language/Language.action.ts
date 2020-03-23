@@ -1,0 +1,1 @@
+export const changeLanguage = (locale:string) => ({type: "CHANGE_LANGUAGE", payload: {locale: locale}})

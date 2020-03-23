@@ -5,7 +5,9 @@ interface UserInfo{
   user: {
     username: string,
     fullname: string,
-    phone: string
+    phone: string,
+    joinDate?: string,
+    avatar?:string
   },
 }
 export const userInfo = Cookies.get('jwt') && decoder<UserInfo>(Cookies.get('jwt')!).user; 

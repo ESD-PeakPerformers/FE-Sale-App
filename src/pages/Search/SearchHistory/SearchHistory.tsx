@@ -1,6 +1,7 @@
 import React from 'react'
 import {IonItemGroup, IonItem, IonLabel, IonIcon} from '@ionic/react';
 import {arrowForwardOutline} from 'ionicons/icons'
+
 const SearchHistory = () => {
   const history = ["Đèn phòng tắm", "Bàn ăn"]
   const renderHistory = history.map(item => {

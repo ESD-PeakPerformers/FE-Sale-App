@@ -7,15 +7,16 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import Cookies from "js-cookie";
 
-// const instance = axios.create({
-//   baseURL: process.env.REACT_APP_BASE_URL
-// });
-
-// // Alter defaults after instance has been created
-// instance.defaults.headers.common["Authorization"] =
-//   "Bearer " + Cookies.get("jwt");
+//Axios configuration
+//Axios without Authorization Header and withCredentials
+export const axiosNoAuth = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL
+});
+axiosNoAuth.defaults.withCredentials = false
+//Default axios 
 axios.defaults.headers.common['Authorization'] = "Bearer " + Cookies.get("jwt")
 axios.defaults.withCredentials = true
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
@@ -27,3 +28,4 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.register();
+

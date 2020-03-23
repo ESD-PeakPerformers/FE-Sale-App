@@ -10,13 +10,10 @@ import Cookies from 'js-cookie'
 
 import { Dispatch } from 'redux';
 import axios from 'axios';
+import {State} from '../../../../redux/root.reducer.type'
+
 var jwt =  require('jwt-simple')
-interface State{
-  cart: {
-      count: number, 
-      items: Item[]
-  }
-}
+
 interface Item{
     cateID: number, 
     cateName: string, 

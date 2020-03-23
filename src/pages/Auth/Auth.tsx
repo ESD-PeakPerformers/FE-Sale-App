@@ -17,6 +17,7 @@ import {useHistory} from 'react-router-dom'
 import { SegmentChangeEventDetail } from '@ionic/core';
 import Login from './Login/Login';
 import Register from './Register/Register';
+import translate from '../../i18n/Translate'
 
 interface showAlert {
   isShow: boolean, 
@@ -47,7 +48,7 @@ const Auth:React.FC = () => {
     //Dang nhap
     if (segment === "login") {
       axios
-        .post(process.env.REACT_APP_BASE_URL + 'auth/jwt/login', {
+        .post(process.env.REACT_APP_BASE_URL + 'auth/login', {
         ...data
       })
         .then(() => {
@@ -71,7 +72,7 @@ const Auth:React.FC = () => {
             password: data.password
           }
           axios
-            .post(process.env.REACT_APP_BASE_URL + 'auth/jwt/login', body)
+            .post(process.env.REACT_APP_BASE_URL + 'auth/login', body)
             .then(() => {
               setShowLoading(false)
               history.push('/products')
@@ -103,17 +104,17 @@ const Auth:React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Đăng nhập / Đăng ký</IonTitle>
+          <IonTitle>{translate("Sign in / Register")}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
 
         <IonSegment scrollable onIonChange={segmentChange}>
           <IonSegmentButton value="login">
-            <IonLabel>Đăng nhập</IonLabel>
+            <IonLabel>{translate("Sign in")}</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton value="logout">
-            <IonLabel>Đăng ký</IonLabel>
+            <IonLabel>{translate("Register")}</IonLabel>
           </IonSegmentButton>
         </IonSegment>
         {renderSegment()}
