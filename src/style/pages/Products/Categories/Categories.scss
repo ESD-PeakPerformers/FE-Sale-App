@@ -1,0 +1,11 @@
+.Products-Categories {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  margin-top: 0.6em;
+  padding: 0 20px 0 20px;
+  -ms-overflow-style: none;
+}

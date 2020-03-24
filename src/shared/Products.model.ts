@@ -8,5 +8,10 @@ export interface Product {
   price: number
   image: string
   quantity?: number
-  rating?: number 
+  rating?: number
+}
+export interface Category {
+  cateID: number
+  cateCode: string
+  cateName: string
 }

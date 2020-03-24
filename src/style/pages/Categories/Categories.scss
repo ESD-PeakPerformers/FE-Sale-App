@@ -1,0 +1,32 @@
+.Categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  margin-top: 2em;
+}
+.Categories-Container {
+  text-align: center;
+  margin-bottom: 1.8em;
+  font-weight: 600;
+  color: var(--ion-text-color);
+}
+
+.Categories-Thumbnail {
+  border: 1px solid $placeholder-background;
+  border-radius: 15px;
+  height: 120px;
+  width: 120px;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  @media (prefers-color-scheme: dark) {
+    border: 1px solid var(--ion-color-light);
+  }
+  img {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+  }
+}

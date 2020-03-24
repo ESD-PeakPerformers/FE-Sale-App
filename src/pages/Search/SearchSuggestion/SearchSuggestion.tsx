@@ -38,7 +38,7 @@ const SearchSuggestion: React.FC<Props> = ({result}) => {
           <IonLabel>{item._source.prodName}</IonLabel>
           <IonThumbnail slot='start'>
             <img
-              src={getImage(item._source.prodID, 0, 'png')}
+              src={getImage('products', item._source.prodID, 0, 'png')}
               alt={item._source.prodName + '-image'}
             />
           </IonThumbnail>

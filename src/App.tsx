@@ -16,11 +16,12 @@ import {
   chatbubbleOutline,
   personCircleOutline,
   cartOutline,
+  gridOutline,
 } from 'ionicons/icons'
 import Products from './pages/Products/Products'
 import Search from './pages/Search/Search'
 import Profile from './pages/Profile/Profile'
-import Message from './pages/Message/Message'
+import Categories from './pages/Categories/Categories'
 import Cart from './pages/Cart/Cart'
 import Landing from './pages/Landing'
 import Auth from './pages/Auth/Auth'
@@ -52,10 +53,10 @@ import './theme/variables.css'
 /* SASS */
 import './style/main.scss'
 import ProdByCat from './pages/Products/ProdByCat/ProdByCat'
-interface Props{
+interface Props {
   locale: string
 }
-const App:React.FC<Props> = ({locale}) => (
+const App: React.FC<Props> = ({locale}) => (
   <IonApp>
     <IonReactRouter>
       <I18nProvider locale={locale}>
@@ -73,7 +74,7 @@ const App:React.FC<Props> = ({locale}) => (
               exact={true}
             />
             <Route path='/search' component={Search} exact={true} />
-            <Route path='/message' component={Message} exact={true} />
+            <Route path='/categories' component={Categories} exact={true} />
             <Route path='/cart' component={Cart} exact={true} />
             <Route path='/profile' component={Profile} exact={true} />
             <Route path='/auth' component={Auth} exact={true} />
@@ -85,14 +86,14 @@ const App:React.FC<Props> = ({locale}) => (
               <IonLabel>Khám phá</IonLabel>
             </IonTabButton>
 
+            <IonTabButton tab='categories' href='/categories'>
+              <IonIcon icon={gridOutline} />
+              <IonLabel>Danh mục</IonLabel>
+            </IonTabButton>
+
             <IonTabButton tab='search' href='/search'>
               <IonIcon icon={searchOutline} />
               <IonLabel>Tìm kiếm</IonLabel>
-            </IonTabButton>
-
-            <IonTabButton tab='message' href='/message'>
-              <IonIcon icon={chatbubbleOutline} />
-              <IonLabel>Tin nhắn</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab='notification' href='/cart'>
@@ -111,8 +112,8 @@ const App:React.FC<Props> = ({locale}) => (
   </IonApp>
 )
 
-const mapStateToProps = (state:State) => ({
-  locale: selectLanguageLocale(state)
-}) 
+const mapStateToProps = (state: State) => ({
+  locale: selectLanguageLocale(state),
+})
 
 export default connect(mapStateToProps)(App)

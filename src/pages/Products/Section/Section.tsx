@@ -5,55 +5,54 @@ import {
   IonButtons,
   IonButton,
   IonLabel,
-  IonSlides,
-  IonSlide,
   IonItem,
   IonThumbnail,
-  IonItemGroup, 
-  IonImg
+  IonItemGroup,
+  IonImg,
 } from '@ionic/react'
-import {addDot,getImage} from '../../../shared/Method'
-import {Product} from '../../../shared/Products.type'
+import {addDot, getImage} from '../../../shared/Method'
+import {Product} from '../../../shared/Products.model'
 
-interface Props{
-  title: string, 
-  link: string, 
+interface Props {
+  title: string
+  link: string
   products: Product[]
 }
 
+//Render danh mục sản phẩm và một số sản phẩm tiêu biểu ở trang products
 const Section: React.FC<Props> = ({title, link, products}) => {
   const slideOpts = {
     initialSlide: 1,
     speed: 400,
-    loop: true
-  };
-  const renderSlides = () => {
-    for (let i = 0; i <= products.length; i += 3) {
-      return (
-        <IonSlide>
-          <IonItemGroup style={{width: '100%'}}>
-            {products
-              .slice(i, i + 3)
-              .map(item => {
-                return (
-                  <IonItem href={"/products/" + title + "-" + item.prodCode + "-" + item.prodID}>
-                    <IonLabel>
-                      <h4>{item.prodName}</h4>
-                      <p>{item.prodCode}</p>
-                      <p>{addDot(item.price)}</p>
-                    </IonLabel>
-                    <IonThumbnail className="Product-Thumbnail" slot="start">
-                      <IonImg
-                        src={getImage(item.prodID, 0, "png")} alt={item.prodCode + '-images'}/>
-                    </IonThumbnail>
-                    <IonButton fill="outline" color='medium' slot="end">Xem</IonButton>
-                  </IonItem>
-                )
-              })}
-          </IonItemGroup>
-        </IonSlide>
-      )
-    }
+    loop: true,
+  }
+  const renderSectionContent = () => {
+    return (
+      <IonItemGroup style={{width: '100%'}}>
+        {products.slice(0, 3).map(item => {
+          const productUrl =
+            '/products/' + title + '-' + item.prodCode + '-' + item.prodID
+          return (
+            <IonItem href={productUrl}>
+              <IonLabel>
+                <h4>{item.prodName}</h4>
+                <p>{item.prodCode}</p>
+                <p>{addDot(item.price)}</p>
+              </IonLabel>
+              <IonThumbnail className='Product-Thumbnail' slot='start'>
+                <IonImg
+                  src={getImage('products', item.prodID, 0, 'png')}
+                  alt={item.prodCode + '-images'}
+                />
+              </IonThumbnail>
+              <IonButton fill='outline' color='medium' slot='end'>
+                Xem
+              </IonButton>
+            </IonItem>
+          )
+        })}
+      </IonItemGroup>
+    )
   }
 
   return (
@@ -61,14 +60,12 @@ const Section: React.FC<Props> = ({title, link, products}) => {
       <IonToolbar>
         <IonTitle slot='start'>{title}</IonTitle>
         <IonButtons slot='end'>
-          <IonButton color="primary" href={link}>
+          <IonButton color='primary' href={link}>
             <IonLabel>Xem tất cả</IonLabel>
           </IonButton>
         </IonButtons>
       </IonToolbar>
-      <IonSlides options={slideOpts}>
-        {renderSlides()}
-      </IonSlides>
+      {renderSectionContent()}
     </React.Fragment>
   )
 }
