@@ -5,49 +5,26 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonAvatar,
-  IonItem,
-  IonLabel,
   IonButton,
-  IonIcon,
   IonButtons,
   IonAlert,
   useIonViewDidEnter,
-  IonSelect,
-  IonSelectOption,
+  IonItemGroup,
+  IonLabel,
 } from '@ionic/react'
-import {personCircleOutline} from 'ionicons/icons'
-import {Link} from 'react-router-dom'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import decoder from 'jwt-decode'
 import translate from '../../i18n/Translate'
-import {useIntl} from 'react-intl'
-import Translate from '../../i18n/Translate'
 import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
 import {changeLanguage} from '../../redux/Language/Language.action'
+import Language from './Language/Language'
+import Avatar from './Avatar/Avatar'
+import Address from './Address/Address'
 
-interface UserInfo {
-  user: {
-    username: string
-    fullname: string
-    phone: string
-    joinDate?: string
-    avatar?: string
-  }
-}
-interface Props {
-  changeLanguage: (locale: string) => void
-}
-
-const Profile: React.FC<Props> = ({changeLanguage}) => {
+const Profile = () => {
   const [showAlert, setShowAlert] = useState({isShow: false, message: ''})
-  const userInfo =
-    Cookies.get('jwt') && decoder<UserInfo>(Cookies.get('jwt')!).user
   const [jwt, setJWT] = useState()
-  const redirectLink = jwt ? '/profile' : '/auth'
-  const intl = useIntl()
 
   //Cập nhật login status mới nhất mỗi khi render view
   useIonViewDidEnter(() => {
@@ -60,28 +37,6 @@ const Profile: React.FC<Props> = ({changeLanguage}) => {
       ...showAlert,
       isShow: false,
     })
-
-  //Render thông tin người dùng dựa vào trạng thái login
-  const renderUserInfo = () => {
-    if (userInfo) {
-      //Nếu đã login, render thông tin người dùng
-      return (
-        <IonLabel style={{marginLeft: '1em'}}>
-          <h3>{userInfo.fullname}</h3>
-          <p>{userInfo.username}</p>
-          {userInfo.joinDate && <p>{'Thành viên từ: ' + userInfo.joinDate}</p>}
-        </IonLabel>
-      )
-    } else {
-      return (
-        //Nếu chưa login, có thể đăng nhập / đăng kí
-        <IonLabel style={{marginLeft: '1em'}}>
-          <h3>{translate('Welcome to Sale App')}</h3>
-          <p>{translate('Sign in / Register')}</p>
-        </IonLabel>
-      )
-    }
-  }
 
   //Handle signout
   const signOut = () => {
@@ -96,25 +51,7 @@ const Profile: React.FC<Props> = ({changeLanguage}) => {
         setShowAlert({isShow: true, message: err.response.data})
       })
   }
-  const renderAvatar = () => {
-    if (userInfo) {
-      //Nếu có đăng nhập check xem user có avatar không
-      return (
-        <IonAvatar slot='start'>
-          {userInfo!.avatar ? (
-            //Nếu có avatar rồi => in ra
-            <img src={userInfo!.avatar} />
-          ) : (
-            //Nếu đăng nhập mà không có avatar => trả avatar là icon
-            <IonIcon size='large' icon={personCircleOutline} />
-          )}
-        </IonAvatar>
-      )
-    } else {
-      //Nếu không đăng nhập => trả avatar là icon
-      return <IonIcon size='large' icon={personCircleOutline} />
-    }
-  }
+
   return (
     <IonPage>
       {/* Header */}
@@ -127,33 +64,18 @@ const Profile: React.FC<Props> = ({changeLanguage}) => {
 
       {/* Content */}
       <IonContent>
-        <Link to={redirectLink}>
-          <IonItem>
-            {renderAvatar()}
-            {renderUserInfo()}
-          </IonItem>
-        </Link>
-        <IonItem>
-          <IonLabel>{Translate('Language')}</IonLabel>
-          <IonSelect
-            multiple={false}
-            cancelText={intl.formatMessage({id: 'Back'})}
-            okText={intl.formatMessage({id: 'Select'})}
-            onIonChange={(e: any) => {
-              changeLanguage(e.detail.value)
-            }}>
-            <IonSelectOption value='vi'>
-              {Translate('Vietnamese')}
-            </IonSelectOption>
-            <IonSelectOption value='en'>{Translate('English')}</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-        {jwt && (
-          <IonButton expand='block' onClick={signOut}>
-            Đăng xuất
-          </IonButton>
-        )}
+        <Avatar jwt={jwt} />
+        <Address />
+        <IonItemGroup className='Profile-Section'>
+          <IonToolbar>
+            <h3 slot='start'>Cài đặt</h3>
+          </IonToolbar>
+          <Language />
+        </IonItemGroup>
+        <LogoutButton jwt={jwt} signOut={signOut} />
       </IonContent>
+
+      {/* Thông báo signout thành công */}
       <IonAlert
         isOpen={showAlert.isShow}
         onDidDismiss={dismissHandler}
@@ -168,6 +90,22 @@ const Profile: React.FC<Props> = ({changeLanguage}) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   changeLanguage: (locale: string) => dispatch(changeLanguage(locale)),
 })
+
+interface LogoutButtonProps {
+  jwt: string
+  signOut: () => void
+}
+const LogoutButton: React.FC<LogoutButtonProps> = ({jwt, signOut}) => {
+  return (
+    <React.Fragment>
+      {jwt && (
+        <IonButton expand='block' onClick={signOut}>
+          Đăng xuất
+        </IonButton>
+      )}
+    </React.Fragment>
+  )
+}
 export default connect(
   null,
   mapDispatchToProps,

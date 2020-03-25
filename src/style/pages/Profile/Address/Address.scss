@@ -1,0 +1,22 @@
+.Profile-Address-Container {
+  --background: #ededed;
+  --border-radius: 15px;
+  margin: 0.5em 1em 0.5em 1em;
+  @media (prefers-color-scheme: dark) {
+    --background: var(--ion-item-background);
+  }
+}
+.Profile-Address-Container-Content {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  p {
+    display: inline-block;
+    margin: 0;
+    line-height: 1.2;
+  }
+  ion-icon {
+    font-size: 1.3em;
+  }
+}
