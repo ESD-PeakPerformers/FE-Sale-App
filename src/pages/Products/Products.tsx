@@ -15,7 +15,6 @@ import axios from 'axios'
 import LazyLoad from 'react-lazyload'
 import SketonText from '../../components/SketonText/SketonText'
 import {useHistory} from 'react-router-dom'
-import Cookies from 'js-cookie'
 import {Product} from '../../shared/Products.model'
 import Categories from './Catergories/Categories'
 
@@ -72,7 +71,7 @@ const Products = () => {
 
   return (
     <IonPage>
-      <IonHeader className='ion-no-border'>
+      <IonHeader className='ion-no-border' translucent={true}>
         <IonGrid>
           <IonToolbar>
             <IonTitle slot='start'>Trang chủ</IonTitle>

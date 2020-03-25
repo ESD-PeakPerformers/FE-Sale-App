@@ -45,7 +45,11 @@ const Section: React.FC<Props> = ({title, link, products}) => {
                   alt={item.prodCode + '-images'}
                 />
               </IonThumbnail>
-              <IonButton fill='outline' color='medium' slot='end'>
+              <IonButton
+                className='Button-SeeMore'
+                fill='solid'
+                shape='round'
+                slot='end'>
                 Xem
               </IonButton>
             </IonItem>
@@ -56,9 +60,9 @@ const Section: React.FC<Props> = ({title, link, products}) => {
   }
 
   return (
-    <React.Fragment>
-      <IonToolbar>
-        <IonTitle slot='start'>{title}</IonTitle>
+    <div className='Section'>
+      <IonToolbar className='Section-Header'>
+        <h3 slot='start'>{title}</h3>
         <IonButtons slot='end'>
           <IonButton color='primary' href={link}>
             <IonLabel>Xem tất cả</IonLabel>
@@ -66,7 +70,7 @@ const Section: React.FC<Props> = ({title, link, products}) => {
         </IonButtons>
       </IonToolbar>
       {renderSectionContent()}
-    </React.Fragment>
+    </div>
   )
 }
 

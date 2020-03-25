@@ -1,39 +1,50 @@
 //Roboto
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,900&display=swap');
 
-body{
-    font-family: 'Roboto', sans-serif;
-    color: $normal;
+body {
+  font-family: 'Roboto', sans-serif;
+  color: $normal;
+  font-size: 17px;
+}
+//Title IOS
+.title-default {
+  font-size: 2em;
+  font-weight: bold;
+}
+//Title android
+.md .title-default {
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
-h1{
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 15px;
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
-h2{
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 15px;
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
-h3{
-    font-size: 1em;
-    font-weight: bold;
-    margin-bottom: 15px;
+h3 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
-h4{
-    font-size: .8em;
+h4 {
+  font-size: 0.8em;
 }
 
-p{
-    font-size: 1em;
-    line-height: 1.2;
+p {
+  font-size: 1em;
+  line-height: 1.2;
 }
 
-a{
-    font-size: 0.875em;
-    color: $primary;
+a {
+  font-size: 0.875em;
+  color: $primary;
 }
