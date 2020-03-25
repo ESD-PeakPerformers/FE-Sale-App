@@ -13,4 +13,8 @@
   --padding-start: 1em;
   --padding-end: 1em;
   --box-shadow: none;
+  @media (prefers-color-scheme: dark) {
+    --background: #101010;
+    color: #656665;
+  }
 }
