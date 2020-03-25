@@ -38,9 +38,9 @@ const Categories = () => {
     })
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader className='ion-no-border' translucent={true}>
         <IonToolbar>
-          <IonTitle>Categories</IonTitle>
+          <IonTitle>Danh mục sản phẩm</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

@@ -34,11 +34,11 @@ const Section: React.FC<Props> = ({title, link, products}) => {
             '/products/' + title + '-' + item.prodCode + '-' + item.prodID
           return (
             <IonItem href={productUrl}>
-              <IonLabel>
+              <div className='Section-Content'>
                 <h4>{item.prodName}</h4>
                 <p>{item.prodCode}</p>
                 <p>{addDot(item.price)}</p>
-              </IonLabel>
+              </div>
               <IonThumbnail className='Product-Thumbnail' slot='start'>
                 <IonImg
                   src={getImage('products', item.prodID, 0, 'png')}

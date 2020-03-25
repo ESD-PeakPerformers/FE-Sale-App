@@ -6,10 +6,11 @@
 }
 
 .Button-SeeMore {
-  color: #3880ff;
-  --background: #f0eff4;
+  color: var(--ion-color-primary);
+  --background: #ededed;
   text-transform: initial;
   font-weight: 500;
   --padding-start: 1em;
   --padding-end: 1em;
+  --box-shadow: none;
 }

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {IonChip, IonLabel, IonContent} from '@ionic/react'
+import {IonChip, IonLabel, IonContent, IonButton} from '@ionic/react'
 import axios from 'axios'
 import {Category} from '../../../shared/Products.model'
 import {Link} from 'react-router-dom'
@@ -20,9 +20,12 @@ const Categories = (props: Props) => {
     categories.map(item => {
       return (
         <Link to={'products/' + item.cateName + '/' + item.cateID}>
-          <IonChip outline={true} color='primary'>
-            <IonLabel color='secondary'>{item.cateName}</IonLabel>
-          </IonChip>
+          <IonButton
+            className='SearchTrend-Keyword'
+            fill='outline'
+            size='small'>
+            {item.cateName}
+          </IonButton>
         </Link>
       )
     })

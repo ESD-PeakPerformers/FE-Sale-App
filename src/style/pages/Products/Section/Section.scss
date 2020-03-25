@@ -7,3 +7,16 @@
     margin-bottom: 0;
   }
 }
+.Section-Content {
+  p {
+    font-size: 0.9em;
+    color: var(--ion-color-primary);
+    font-weight: 500;
+    &:first-of-type {
+      color: $placeholder;
+      font-weight: normal;
+      margin-top: 0.3em;
+      margin-bottom: 0.3em;
+    }
+  }
+}

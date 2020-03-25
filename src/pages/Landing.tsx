@@ -1,5 +1,11 @@
 import React from 'react'
-import {IonPage, IonTitle, IonHeader, IonContent, IonToolbar} from '@ionic/react'
+import {
+  IonPage,
+  IonTitle,
+  IonHeader,
+  IonContent,
+  IonToolbar,
+} from '@ionic/react'
 
 const Landing = () => {
   return (

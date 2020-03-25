@@ -118,7 +118,7 @@ const Profile: React.FC<Props> = ({changeLanguage}) => {
   return (
     <IonPage>
       {/* Header */}
-      <IonHeader>
+      <IonHeader className='ion-no-border' translucent={true}>
         <IonToolbar>
           <IonTitle slot='start'>{translate('My account')}</IonTitle>
           <IonButtons slot='end'></IonButtons>

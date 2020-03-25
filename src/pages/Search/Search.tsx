@@ -85,7 +85,7 @@ const Search = () => {
   }
   return (
     <IonPage>
-      <IonHeader className='ion-no-border'>
+      <IonHeader className='ion-no-border' translucent={true}>
         <IonToolbar>
           <IonTitle>Tìm kiếm</IonTitle>
         </IonToolbar>
