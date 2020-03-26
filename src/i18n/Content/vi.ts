@@ -30,5 +30,10 @@ export default {
     'Username or password is incorrect':
       'Tên đăng nhập hoặc mật khẩu không chính xác',
     'Save changes': 'Lưu thay đổi',
+    'Set as default': 'Đặt làm mặc định',
+    'Default address': 'Địa chỉ mặc định',
+    'Delivery address': 'Địa chỉ giao hàng',
+    Delete: ' Xoá',
+    'Add a new deliver address': 'Thêm địa chỉ mới',
   },
 }

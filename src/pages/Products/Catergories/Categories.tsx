@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import {IonChip, IonLabel, IonContent, IonButton} from '@ionic/react'
+import {
+  IonChip,
+  IonLabel,
+  IonContent,
+  IonButton,
+  IonToolbar,
+} from '@ionic/react'
 import axios from 'axios'
 import {Category} from '../../../shared/Products.model'
 import {Link} from 'react-router-dom'
@@ -32,7 +38,7 @@ const Categories = (props: Props) => {
 
   return (
     <React.Fragment>
-      <h3>Danh mục sản phẩm</h3>
+      <h3 style={{paddingLeft: '10px'}}>Danh mục sản phẩm</h3>
       <div className='Products-Categories'>{renderCategories}</div>
     </React.Fragment>
   )

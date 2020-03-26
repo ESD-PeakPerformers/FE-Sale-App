@@ -37,11 +37,13 @@ const ShowAllAddress: React.FC<Props> = ({toggleModal}) => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot='start'>
-            <IonButton className='Button-Back' href='/profile'>
+            <IonButton
+              className='Button-Back'
+              onClick={() => toggleModal(false)}>
               <IonIcon icon={chevronBackOutline} color='primary' />
             </IonButton>
           </IonButtons>
-          <IonTitle>Địa chỉ giao hàng</IonTitle>
+          <IonTitle>{translate('Delivery address')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonList>
@@ -50,15 +52,15 @@ const ShowAllAddress: React.FC<Props> = ({toggleModal}) => {
             <h3>Pham Duc Minh</h3>
             <p>195/14 Ton That Thuyet, Phuong 3, Quan 4, TP. Ho Chi Minh</p>
             <p>0865573597</p>
-            <span>Địa chỉ mặc định</span>
+            <span>{translate('Default address')}</span>
             <IonPopover
               isOpen={showPopover.open}
               onDidDismiss={() => setShowPopover({...showPopover, open: false})}
               event={showPopover.event}>
               <IonButtons className='ShowAllAddress-DropdownButtons'>
-                <IonButton>Đặt làm mặc định</IonButton>
-                <IonButton>Chỉnh sửa</IonButton>
-                <IonButton>Xoá</IonButton>
+                <IonButton>{translate('Set as default')}</IonButton>
+                <IonButton>{translate('Edit')}</IonButton>
+                <IonButton>{translate('Delete')}</IonButton>
               </IonButtons>
             </IonPopover>
           </IonLabel>
@@ -73,7 +75,7 @@ const ShowAllAddress: React.FC<Props> = ({toggleModal}) => {
       <IonButtons>
         <IonButton id='Button-AddAddress' expand='block' color='primary'>
           <IonIcon icon={addCircleOutline} color='primary' />
-          Thêm địa chỉ mới
+          {translate('Add a new deliver address')}
         </IonButton>
       </IonButtons>
       <IonButton
