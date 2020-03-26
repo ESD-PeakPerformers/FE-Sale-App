@@ -8,8 +8,8 @@ import {
   IonLabel,
 } from '@ionic/react'
 import {logoFacebook, logoGoogle} from 'ionicons/icons'
-import {FormattedMessage, useIntl} from 'react-intl'
-import translate from '../../../i18n/Translate';
+import {useIntl} from 'react-intl'
+import translate from '../../../i18n/Translate'
 
 interface Props {
   submitHandler: (e: React.FormEvent<HTMLFormElement>, data: loginInput) => void
@@ -43,7 +43,7 @@ const Login: React.FC<Props> = ({submitHandler}) => {
       <form onSubmit={e => submitHandler(e, loginInput)}>
         <IonItem>
           <IonInput
-            placeholder={intl.formatMessage({id:'Email'})}
+            placeholder={intl.formatMessage({id: 'Email'})}
             type='email'
             name='username'
             onIonInput={inputChangeHandler}
@@ -53,7 +53,7 @@ const Login: React.FC<Props> = ({submitHandler}) => {
         </IonItem>
         <IonItem>
           <IonInput
-            placeholder={intl.formatMessage({id:'Password'})}
+            placeholder={intl.formatMessage({id: 'Password'})}
             type='password'
             name='password'
             clearInput={true}
@@ -66,11 +66,11 @@ const Login: React.FC<Props> = ({submitHandler}) => {
           style={{marginTop: '2em'}}
           type='submit'
           expand='block'>
-          {translate("Sign in")}
+          {translate('Sign in')}
         </IonButton>
       </form>
 
-    <IonLabel id='Login-SubText'>{translate("Or sign in with")}</IonLabel>
+      <IonLabel id='Login-SubText'>{translate('Or sign in with')}</IonLabel>
       <IonButton
         color='danger'
         style={{marginTop: '1.5em'}}

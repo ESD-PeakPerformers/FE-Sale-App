@@ -10,7 +10,6 @@ import {
   IonAlert,
   useIonViewDidEnter,
   IonItemGroup,
-  IonLabel,
 } from '@ionic/react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
@@ -21,11 +20,12 @@ import {changeLanguage} from '../../redux/Language/Language.action'
 import Language from './Language/Language'
 import Avatar from './Avatar/Avatar'
 import Address from './Address/Address'
+import {useIntl} from 'react-intl'
 
 const Profile = () => {
   const [showAlert, setShowAlert] = useState({isShow: false, message: ''})
   const [jwt, setJWT] = useState()
-
+  const intl = useIntl()
   //Cập nhật login status mới nhất mỗi khi render view
   useIonViewDidEnter(() => {
     setJWT(Cookies.get('jwt'))
@@ -40,12 +40,13 @@ const Profile = () => {
 
   //Handle signout
   const signOut = () => {
+    const successMessage = intl.formatMessage({id: 'Successfully logged out'})
     axios
       .post(process.env.REACT_APP_BASE_URL + 'auth/logout', {})
       .then(() => {
         Cookies.remove('jwt')
         setJWT(null)
-        setShowAlert({isShow: true, message: 'Đăng xuất thành công'})
+        setShowAlert({isShow: true, message: successMessage})
       })
       .catch(err => {
         setShowAlert({isShow: true, message: err.response.data})
@@ -65,23 +66,27 @@ const Profile = () => {
       {/* Content */}
       <IonContent>
         <Avatar jwt={jwt} />
-        <Address />
+        {jwt && <Address />}
         <IonItemGroup className='Profile-Section'>
           <IonToolbar>
-            <h3 slot='start'>Cài đặt</h3>
+            <h3 slot='start'>{translate('Settings')}</h3>
           </IonToolbar>
           <Language />
         </IonItemGroup>
-        <LogoutButton jwt={jwt} signOut={signOut} />
+        {jwt && (
+          <IonButton expand='block' onClick={signOut}>
+            {translate('Logout')}
+          </IonButton>
+        )}
       </IonContent>
 
       {/* Thông báo signout thành công */}
       <IonAlert
         isOpen={showAlert.isShow}
         onDidDismiss={dismissHandler}
-        header={'Thông báo'}
+        header={intl.formatMessage({id: 'Notification'})}
         message={showAlert.message}
-        buttons={['Đóng']}
+        buttons={[intl.formatMessage({id: 'Close'})]}
       />
     </IonPage>
   )
@@ -91,21 +96,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   changeLanguage: (locale: string) => dispatch(changeLanguage(locale)),
 })
 
-interface LogoutButtonProps {
-  jwt: string
-  signOut: () => void
-}
-const LogoutButton: React.FC<LogoutButtonProps> = ({jwt, signOut}) => {
-  return (
-    <React.Fragment>
-      {jwt && (
-        <IonButton expand='block' onClick={signOut}>
-          Đăng xuất
-        </IonButton>
-      )}
-    </React.Fragment>
-  )
-}
 export default connect(
   null,
   mapDispatchToProps,
