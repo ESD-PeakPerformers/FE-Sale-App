@@ -13,6 +13,7 @@ import {Category} from '../../shared/Products.model'
 import {getImage} from '../../shared/Method'
 import {Link} from 'react-router-dom'
 import Banner from '../../components/Banner/Banner'
+import Translate from '../../i18n/Translate'
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>()
 
@@ -40,10 +41,13 @@ const Categories = () => {
     <IonPage>
       <IonHeader className='ion-no-border' translucent={true}>
         <IonToolbar>
-          <IonTitle>Danh mục sản phẩm</IonTitle>
+          <IonTitle>{Translate('Categories')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        <h3 style={{marginLeft: '20px', marginTop: '2em'}}>
+          {Translate('Trending')}
+        </h3>
         <IonGrid className='Categories'>
           <Banner />
           {renderCategories}

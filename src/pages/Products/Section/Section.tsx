@@ -12,6 +12,7 @@ import {
 } from '@ionic/react'
 import {addDot, getImage} from '../../../shared/Method'
 import {Product} from '../../../shared/Products.model'
+import translate from '../../../i18n/Translate'
 
 interface Props {
   title: string
@@ -50,7 +51,7 @@ const Section: React.FC<Props> = ({title, link, products}) => {
                 fill='solid'
                 shape='round'
                 slot='end'>
-                Xem
+                {translate('See')}
               </IonButton>
             </IonItem>
           )
@@ -65,7 +66,7 @@ const Section: React.FC<Props> = ({title, link, products}) => {
         <h3 slot='start'>{title}</h3>
         <IonButtons slot='end'>
           <IonButton color='primary' href={link}>
-            <IonLabel>Xem tất cả</IonLabel>
+            <IonLabel>{translate('See more')}</IonLabel>
           </IonButton>
         </IonButtons>
       </IonToolbar>

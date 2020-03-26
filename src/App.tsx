@@ -30,7 +30,7 @@ import {I18nProvider} from './i18n/Index'
 import {selectLanguageLocale} from './redux/Language/Language.selector'
 import {State} from './redux/root.reducer.type'
 import {connect} from 'react-redux'
-
+import translate from './i18n/Translate'
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
 
@@ -83,27 +83,27 @@ const App: React.FC<Props> = ({locale}) => (
           <IonTabBar slot='bottom'>
             <IonTabButton tab='products' href='/products'>
               <IonIcon icon={homeOutline} />
-              <IonLabel>Khám phá</IonLabel>
+              <IonLabel>{translate('Home')}</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab='categories' href='/categories'>
               <IonIcon icon={gridOutline} />
-              <IonLabel>Danh mục</IonLabel>
+              <IonLabel>{translate('Categories')}</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab='search' href='/search'>
               <IonIcon icon={searchOutline} />
-              <IonLabel>Tìm kiếm</IonLabel>
+              <IonLabel>{translate('Search')}</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab='notification' href='/cart'>
               <IonIcon icon={cartOutline} />
-              <IonLabel>Giỏ hàng</IonLabel>
+              <IonLabel>{translate('Cart')}</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab='profile' href='/profile'>
               <IonIcon icon={personCircleOutline} />
-              <IonLabel>Cá nhân</IonLabel>
+              <IonLabel>{translate('Profile')}</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

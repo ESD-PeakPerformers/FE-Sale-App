@@ -17,7 +17,8 @@ import SketonText from '../../components/SketonText/SketonText'
 import {useHistory} from 'react-router-dom'
 import {Product} from '../../shared/Products.model'
 import Categories from './Catergories/Categories'
-
+import translate from '../../i18n/Translate'
+import {useIntl} from 'react-intl'
 interface Section {
   cateID: number
   cateCode: string
@@ -28,6 +29,7 @@ interface Section {
 const Products = () => {
   const history = useHistory()
   const [data, setData] = useState<null | Section[]>()
+  const intl = useIntl()
 
   //Khi ấn vào thanh search tự động điều hướng qua tab Search
   const searchBarRedirect = () => {
@@ -74,7 +76,7 @@ const Products = () => {
       <IonHeader className='ion-no-border' translucent={true}>
         <IonGrid>
           <IonToolbar>
-            <IonTitle slot='start'>Trang chủ</IonTitle>
+            <IonTitle slot='start'>{translate('Home')}</IonTitle>
           </IonToolbar>
         </IonGrid>
       </IonHeader>
@@ -84,7 +86,9 @@ const Products = () => {
           <IonSearchbar
             onIonFocus={searchBarRedirect}
             debounce={500}
-            placeholder='Tìm kiếm sản phẩm...'></IonSearchbar>
+            placeholder={intl.formatMessage({
+              id: 'Search for products',
+            })}></IonSearchbar>
           <Banner />
           <Categories />
           {renderSection}
