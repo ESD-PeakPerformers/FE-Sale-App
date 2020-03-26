@@ -31,10 +31,10 @@ const Categories = (props: Props) => {
     })
 
   return (
-    <div className='Products-Categories'>
+    <React.Fragment>
       <h3>Danh mục sản phẩm</h3>
-      {renderCategories}
-    </div>
+      <div className='Products-Categories'>{renderCategories}</div>
+    </React.Fragment>
   )
 }
 

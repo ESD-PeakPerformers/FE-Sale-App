@@ -10,7 +10,7 @@
 .Section-Content {
   p {
     font-size: 0.9em;
-    color: var(--ion-color-primary);
+    color: $placeholder;
     font-weight: 500;
     &:first-of-type {
       color: $placeholder;
