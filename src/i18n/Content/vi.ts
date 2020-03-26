@@ -29,5 +29,6 @@ export default {
     'Successfully logged out': 'Đăng xuất thành công',
     'Username or password is incorrect':
       'Tên đăng nhập hoặc mật khẩu không chính xác',
+    'Save changes': 'Lưu thay đổi',
   },
 }

@@ -74,7 +74,10 @@ const Profile = () => {
           <Language />
         </IonItemGroup>
         {jwt && (
-          <IonButton expand='block' onClick={signOut}>
+          <IonButton
+            expand='block'
+            className='Button__FloatBottom'
+            onClick={signOut}>
             {translate('Logout')}
           </IonButton>
         )}

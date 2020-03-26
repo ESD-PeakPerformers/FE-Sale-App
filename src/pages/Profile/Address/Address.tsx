@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
   IonItem,
   IonToolbar,
@@ -7,18 +7,28 @@ import {
   IonIcon,
   IonButtons,
   IonButton,
+  IonModal,
 } from '@ionic/react'
-import {homeOutline, checkmarkCircle} from 'ionicons/icons'
+import {homeOutline, checkmarkCircle, toggle} from 'ionicons/icons'
+import translate from '../../../i18n/Translate'
+import ShowAllAddress from './ShowAllAddress/ShowAllAddress'
+
 interface Props {}
 
 const Address = (props: Props) => {
+  const [showModal, setShowModal] = useState(false)
+  const toggleModal = (status: boolean) => {
+    setShowModal(status)
+  }
   return (
     <IonItemGroup className='Profile-Section'>
       <IonToolbar>
-        <h3 slot='start'>Địa chỉ</h3>
+        <h3 slot='start'>{translate('Address')}</h3>
         <IonButtons slot='end'>
-          <IonButton color='primary' href={''}>
-            <IonLabel>Chỉnh sửa</IonLabel>
+          <IonButton color='primary'>
+            <IonLabel onClick={() => toggleModal(true)}>
+              {translate('Edit')}
+            </IonLabel>
           </IonButton>
         </IonButtons>
       </IonToolbar>
@@ -29,6 +39,9 @@ const Address = (props: Props) => {
           <IonIcon color='primary' size='default' icon={checkmarkCircle} />
         </IonLabel>
       </IonItem>
+      <IonModal isOpen={showModal}>
+        <ShowAllAddress toggleModal={toggleModal} />
+      </IonModal>
     </IonItemGroup>
   )
 }

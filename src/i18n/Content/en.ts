@@ -27,5 +27,6 @@ export default {
     Close: 'Close',
     'Successfully logged out': 'Successfully logged out',
     'Username or password is incorrect': 'Username or password is incorrect',
+    'Save changes': 'Save changes',
   },
 }

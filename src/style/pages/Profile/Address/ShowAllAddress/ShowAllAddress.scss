@@ -1,0 +1,31 @@
+.ShowAllAddress {
+  .title-default {
+    color: var(--ion-text-color);
+    padding: 20px;
+  }
+}
+.ShowAllAddress-Label {
+  h3 {
+    font-size: 1em;
+    font-weight: 500;
+  }
+  span {
+    font-size: 0.8em;
+    color: var(--ion-color-primary);
+  }
+}
+
+.ShowAllAddress-DropdownButtons {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  .button {
+    text-transform: initial;
+    width: 100%;
+  }
+}
+
+#Button-AddAddress {
+  width: 100%;
+  text-transform: initial;
+}
