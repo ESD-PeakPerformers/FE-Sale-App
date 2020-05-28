@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   IonContent,
   IonHeader,
@@ -9,18 +9,18 @@ import {
   IonThumbnail,
 } from '@ionic/react'
 import axios from 'axios'
-import {Category} from '../../shared/Products.model'
-import {getImage} from '../../shared/Method'
-import {Link} from 'react-router-dom'
-import Banner from '../../components/Banner/Banner'
+import { Category } from '../shared/types'
+import { getImage } from '../../shared/Method'
+import { Link } from 'react-router-dom'
 import Translate from '../../i18n/Translate'
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>()
-
   useEffect(() => {
-    axios.get(process.env.REACT_APP_BASE_URL + 'categories').then(({data}) => {
-      setCategories(data)
-    })
+    axios
+      .get(process.env.REACT_APP_BASE_URL + 'categories')
+      .then(({ data }) => {
+        setCategories(data)
+      })
   }, [])
 
   const renderCategories =
@@ -45,13 +45,10 @@ const Categories = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <h3 style={{marginLeft: '20px', marginTop: '2em'}}>
+        <h3 style={{ marginLeft: '20px', marginTop: '2em' }}>
           {Translate('Trending')}
         </h3>
-        <IonGrid className='Categories'>
-          <Banner />
-          {renderCategories}
-        </IonGrid>
+        <IonGrid className='Categories'>{renderCategories}</IonGrid>
       </IonContent>
     </IonPage>
   )

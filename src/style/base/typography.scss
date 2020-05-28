@@ -1,11 +1,11 @@
 //Roboto
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap&subset=vietnamese');
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: $normal;
   font-size: 17px;
 }
+
 //Title IOS
 .title-default {
   font-size: 2em;
@@ -18,34 +18,29 @@ body {
 }
 
 h1 {
-  font-size: 2em;
-  font-weight: bold;
-  margin-bottom: 15px;
+  font-size: 1.25em;
+  font-weight: 500;
 }
-
 h2 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 15px;
+  font-size: 1em;
+  font-weight: 500;
 }
-
 h3 {
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-h4 {
-  font-size: 0.9em;
-  font-weight: bold;
-}
-
-p {
-  font-size: 1em;
-  line-height: 1.2;
-}
-
-a {
   font-size: 0.875em;
-  color: $primary;
+  font-weight: 500;
+}
+h4 {
+  font-size: 1em;
+  font-weight: 500;
+}
+h5 {
+  font-size: 1em;
+  font-weight: 500;
+}
+p {
+  line-height: 1.2;
+  font-size: 1em;
+}
+a {
+  font-size: 1em;
 }

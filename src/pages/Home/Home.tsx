@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   IonContent,
   IonHeader,
@@ -9,16 +9,14 @@ import {
   IonSearchbar,
   IonSpinner,
 } from '@ionic/react'
-import Banner from '../../components/Banner/Banner'
 import Section from './Section/Section'
 import axios from 'axios'
 import LazyLoad from 'react-lazyload'
 import SketonText from '../../components/SketonText/SketonText'
-import {useHistory} from 'react-router-dom'
-import {Product} from '../../shared/Products.model'
-import Categories from './Catergories/Categories'
+import { useHistory } from 'react-router-dom'
+import { Product } from '../shared/types'
 import translate from '../../i18n/Translate'
-import {useIntl} from 'react-intl'
+import { useIntl } from 'react-intl'
 interface Section {
   cateID: number
   cateCode: string
@@ -41,7 +39,7 @@ const Products = () => {
   useEffect(() => {
     axios
       .get(process.env.REACT_APP_BASE_URL + 'products')
-      .then(({data}) => {
+      .then(({ data }) => {
         setData(data)
       })
       .catch(err => console.log(err))
@@ -89,8 +87,6 @@ const Products = () => {
             placeholder={intl.formatMessage({
               id: 'Search for products',
             })}></IonSearchbar>
-          <Banner />
-          <Categories />
           {renderSection}
         </IonGrid>
       </IonContent>

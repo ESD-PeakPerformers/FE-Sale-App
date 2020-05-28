@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import {
   IonApp,
   IonIcon,
@@ -9,28 +9,27 @@ import {
   IonTabButton,
   IonTabs,
 } from '@ionic/react'
-import {IonReactRouter} from '@ionic/react-router'
+import { IonReactRouter } from '@ionic/react-router'
 import {
   homeOutline,
   searchOutline,
-  chatbubbleOutline,
   personCircleOutline,
   cartOutline,
   gridOutline,
 } from 'ionicons/icons'
-import Products from './pages/Products/Products'
+import Products from './pages/Home/Home'
 import Search from './pages/Search/Search'
 import Profile from './pages/Profile/Profile'
 import Categories from './pages/Categories/Categories'
 import Cart from './pages/Cart/Cart'
-import Landing from './pages/Landing'
 import Auth from './pages/Auth/Auth'
-import ProductDetail from './pages/Products/ProductDetail/ProductDetail'
-import {I18nProvider} from './i18n/Index'
-import {selectLanguageLocale} from './redux/Language/Language.selector'
-import {State} from './redux/root.reducer.type'
-import {connect} from 'react-redux'
+import ProductDetail from './pages/Home/ProductDetail/ProductDetail'
+import { I18nProvider } from './i18n/Index'
+import { selectLanguageLocale } from './redux/Language/Language.selector'
+import { State } from './redux/root.reducer.type'
+import { connect } from 'react-redux'
 import translate from './i18n/Translate'
+import { hot } from 'react-hot-loader'
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
 
@@ -52,17 +51,17 @@ import './theme/variables.css'
 
 /* SASS */
 import './style/main.scss'
-import ProdByCat from './pages/Products/ProdByCat/ProdByCat'
+import ProdByCat from './pages/Home/ProdByCat/ProdByCat'
+
 interface Props {
   locale: string
 }
-const App: React.FC<Props> = ({locale}) => (
+const App: React.FC<Props> = ({ locale }) => (
   <IonApp>
     <IonReactRouter>
       <I18nProvider locale={locale}>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path='/products' component={Products} exact={true} />
             <Route
               path='/products/:category/:cateID'
               component={ProdByCat}
@@ -78,10 +77,11 @@ const App: React.FC<Props> = ({locale}) => (
             <Route path='/cart' component={Cart} exact={true} />
             <Route path='/profile' component={Profile} exact={true} />
             <Route path='/auth' component={Auth} exact={true} />
-            <Route path='/' component={Landing} exact={true} />
+            <Route path='/home' component={Products} exact={true} />
           </IonRouterOutlet>
+
           <IonTabBar slot='bottom'>
-            <IonTabButton tab='products' href='/products'>
+            <IonTabButton tab='products' href='/home'>
               <IonIcon icon={homeOutline} />
               <IonLabel>{translate('Home')}</IonLabel>
             </IonTabButton>
@@ -116,4 +116,4 @@ const mapStateToProps = (state: State) => ({
   locale: selectLanguageLocale(state),
 })
 
-export default connect(mapStateToProps)(App)
+export default hot(module)(connect(mapStateToProps)(App))

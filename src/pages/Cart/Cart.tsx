@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   IonContent,
   IonHeader,
@@ -17,7 +17,7 @@ import jwt from 'jwt-simple'
 import DeliverAddress from './DeliverAddress/DeliverAddress'
 import Payment from './Payment/Payment'
 import Total from './Total/Total'
-import {Product} from '../../shared/Products.model'
+import { Product } from '../shared/types'
 
 interface State {
   count: number
@@ -30,14 +30,14 @@ const Cart = () => {
 
   useEffect(() => {
     if (Cookies.get('jwt')) {
-      axios.get(process.env.REACT_APP_BASE_URL + 'carts').then(({data}) => {
+      axios.get(process.env.REACT_APP_BASE_URL + 'carts').then(({ data }) => {
         setCartItems(data)
       })
     } else if (Cookies.get('CART')) {
       const data = jwt.decode(Cookies.get('CART')!, 'xxx')
       setCartItems(data)
     } else {
-      setCartItems(prev => ({count: 0, products: []}))
+      setCartItems(prev => ({ count: 0, products: [] }))
     }
   }, [])
 

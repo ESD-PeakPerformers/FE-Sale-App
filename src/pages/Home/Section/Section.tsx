@@ -10,8 +10,8 @@ import {
   IonItemGroup,
   IonImg,
 } from '@ionic/react'
-import {addDot, getImage} from '../../../shared/Method'
-import {Product} from '../../../shared/Products.model'
+import { addDot, getImage } from '../../../shared/Method'
+import { Product } from '../../shared/types'
 import translate from '../../../i18n/Translate'
 
 interface Props {
@@ -21,15 +21,16 @@ interface Props {
 }
 
 //Render danh mục sản phẩm và một số sản phẩm tiêu biểu ở trang products
-const Section: React.FC<Props> = ({title, link, products}) => {
+const Section: React.FC<Props> = ({ title, link, products }) => {
   const slideOpts = {
     initialSlide: 1,
     speed: 400,
     loop: true,
   }
+
   const renderSectionContent = () => {
     return (
-      <IonItemGroup style={{width: '100%'}}>
+      <IonItemGroup style={{ width: '100%' }}>
         {products.slice(0, 3).map(item => {
           const productUrl =
             '/products/' + title + '-' + item.prodCode + '-' + item.prodID

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
   IonItemGroup,
   IonItem,
@@ -7,8 +7,8 @@ import {
   IonIcon,
   IonLabel,
 } from '@ionic/react'
-import {logoFacebook, logoGoogle} from 'ionicons/icons'
-import {useIntl} from 'react-intl'
+import { logoFacebook, logoGoogle } from 'ionicons/icons'
+import { useIntl } from 'react-intl'
 import translate from '../../../i18n/Translate'
 
 interface Props {
@@ -20,7 +20,7 @@ interface loginInput {
   password: string
 }
 
-const Login: React.FC<Props> = ({submitHandler}) => {
+const Login: React.FC<Props> = ({ submitHandler }) => {
   const intl = useIntl()
   const [loginInput, setLoginInput] = useState<loginInput>({
     username: '',
@@ -29,7 +29,7 @@ const Login: React.FC<Props> = ({submitHandler}) => {
 
   //Handle input change
   const inputChangeHandler = (e: CustomEvent<KeyboardEvent>) => {
-    const {name, value} = e.target as HTMLInputElement
+    const { name, value } = e.target as HTMLInputElement
     setLoginInput(
       (prev): loginInput => ({
         ...prev,
@@ -43,7 +43,7 @@ const Login: React.FC<Props> = ({submitHandler}) => {
       <form onSubmit={e => submitHandler(e, loginInput)}>
         <IonItem>
           <IonInput
-            placeholder={intl.formatMessage({id: 'Email'})}
+            placeholder={intl.formatMessage({ id: 'Email' })}
             type='email'
             name='username'
             onIonInput={inputChangeHandler}
@@ -53,7 +53,7 @@ const Login: React.FC<Props> = ({submitHandler}) => {
         </IonItem>
         <IonItem>
           <IonInput
-            placeholder={intl.formatMessage({id: 'Password'})}
+            placeholder={intl.formatMessage({ id: 'Password' })}
             type='password'
             name='password'
             clearInput={true}
@@ -63,7 +63,7 @@ const Login: React.FC<Props> = ({submitHandler}) => {
         </IonItem>
         <IonButton
           color='primary'
-          style={{marginTop: '2em'}}
+          style={{ marginTop: '2em' }}
           type='submit'
           expand='block'>
           {translate('Sign in')}
@@ -73,7 +73,7 @@ const Login: React.FC<Props> = ({submitHandler}) => {
       <IonLabel id='Login-SubText'>{translate('Or sign in with')}</IonLabel>
       <IonButton
         color='danger'
-        style={{marginTop: '1.5em'}}
+        style={{ marginTop: '1.5em' }}
         href={process.env.REACT_APP_BASE_URL_AUTH + 'auth/google'}
         expand='block'>
         <IonIcon icon={logoGoogle} />
@@ -81,7 +81,7 @@ const Login: React.FC<Props> = ({submitHandler}) => {
 
       <IonButton
         color='primary'
-        style={{marginTop: '1em'}}
+        style={{ marginTop: '1em' }}
         href={process.env.REACT_APP_BASE_URL_AUTH + 'auth/facebook'}
         type='submit'
         expand='block'>
