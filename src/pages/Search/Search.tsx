@@ -1,4 +1,4 @@
-import React, {useEffect, useState, FormEvent} from 'react'
+import React, { useEffect, useState, FormEvent } from 'react'
 import {
   IonContent,
   IonHeader,
@@ -10,30 +10,12 @@ import {
 } from '@ionic/react'
 import SearchTrend from './SearchTrend/SearchTrend'
 import SearchHistory from './SearchHistory/SearchHistory'
-import {axiosNoAuth} from '../../index'
+import { axiosNoAuth } from '../../index'
 import ProductsList from '../../components/ProductsList/ProductsList'
-import {SearchbarChangeEventDetail} from '@ionic/core'
+import { SearchbarChangeEventDetail } from '@ionic/core'
 import SearchSuggestion from './SearchSuggestion/SearchSuggestion'
-
-interface Product {
-  date: string
-  image: string
-  rating: number
-  cateID: number
-  price: number
-  prodCode: string
-  prodID: number
-  prodName: string
-  cateName: string
-}
-
-interface SearchResult {
-  _index: string
-  _type: string
-  _id: string
-  _score: number
-  _source: Product
-}
+import { Product } from '../shared/types'
+import { SearchResult } from './types'
 
 const Search = () => {
   const [input, setInput] = useState()
@@ -60,7 +42,7 @@ const Search = () => {
     }
     axiosNoAuth
       .post(process.env.REACT_APP_ELASTIC_SEARCH + 'products/_search', options)
-      .then(({data}) => {
+      .then(({ data }) => {
         setResult(data.hits.hits)
       })
   }, [input])

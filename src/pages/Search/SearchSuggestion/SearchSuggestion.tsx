@@ -1,32 +1,14 @@
 import React from 'react'
-import {IonItem, IonLabel, IonThumbnail, IonItemGroup} from '@ionic/react'
-import {getImage} from '../../../shared/Method'
-
-interface SearchResult {
-  _index: string
-  _type: string
-  _id: string
-  _score: number
-  _source: Product
-}
-
-interface Product {
-  date: string
-  image: string
-  rating: number
-  cateID: number
-  price: number
-  prodCode: string
-  prodID: number
-  prodName: string
-  cateName: string
-}
+import { IonItem, IonLabel, IonThumbnail, IonItemGroup } from '@ionic/react'
+import { getImage } from '../../../shared/Method'
+import { SearchResult } from '../types'
+import { Product } from '../../shared/types'
 
 interface Props {
   result: SearchResult[]
 }
 
-const SearchSuggestion: React.FC<Props> = ({result}) => {
+const SearchSuggestion: React.FC<Props> = ({ result }) => {
   const renderSearchSuggestion =
     result &&
     result.map(item => {

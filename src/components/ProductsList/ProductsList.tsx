@@ -1,31 +1,16 @@
 import React from 'react'
-import {IonItem, IonThumbnail, IonImg, IonLabel} from '@ionic/react'
+import { IonItem, IonThumbnail, IonImg, IonLabel } from '@ionic/react'
 import LazyLoad from 'react-lazyload'
 import SketonText from '../SketonText/SketonText'
-import {addDot, getImage} from '../../shared/Method'
+import { addDot, getImage } from '../../shared/Method'
+import { SearchResult } from '../../pages/Search/types'
+import { Product } from '../../pages/shared/types'
+
 interface Props {
   data: SearchResult[]
 }
-interface Product {
-  date: string
-  image: string
-  rating: number
-  cateID: number
-  price: number
-  prodCode: string
-  prodID: number
-  prodName: string
-  cateName: string
-}
 
-interface SearchResult {
-  _index: string
-  _type: string
-  _id: string
-  _score: number
-  _source: Product
-}
-const ProductsList: React.FC<Props> = ({data}) => {
+const ProductsList: React.FC<Props> = ({ data }) => {
   const renderItems = data ? (
     data.map(item => {
       return (
